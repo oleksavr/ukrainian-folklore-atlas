@@ -12,6 +12,10 @@ No build tools or dependencies are needed. Open `index.html` in a browser, or us
 
 The app is a static site, so it also works on any ordinary static host.
 
+## Images
+
+The creature pictures are realistic illustrations generated with Grok Imagine. They are imaginative depictions of folklore figures, not historical artworks or photographs of real beings.
+
 ## Customize
 
 All app content, styles, and interactions are in `index.html`. Creature summaries are paraphrased and linked to sources in the app. The collection emphasizes regional variation; it is an introduction to recorded traditions, not a claim that supernatural beings exist.
