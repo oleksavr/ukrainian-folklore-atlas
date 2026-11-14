@@ -1,6 +1,6 @@
 # Dyvosvit — Ukrainian Folklore Atlas
 
-A small, bilingual, mobile-friendly folklore explorer, now with 22 figures and a Major Arcana card game. Search the atlas, filter figures by realm, switch between English and Ukrainian, open a short sourced story, draw a daily card, or lay a three-card past, present and future reading.
+A small, bilingual folklore explorer, now with 22 figures and a Major Arcana card game. Search the atlas, filter figures by realm, switch between English and Ukrainian, open a short sourced story, draw a daily card, or lay a three-card past, present and future reading. The cards tilt with a parallax effect (pointer on a computer, motion or touch on a phone), and the layout changes for phones, tablets, and large screens.
 
 Play it at **https://oleksavr.github.io/ukrainian-folklore-atlas/**
 

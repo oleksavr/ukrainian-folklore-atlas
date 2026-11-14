@@ -98,6 +98,89 @@
       .tarot-inner{transition:none}
     }
 
+
+    /* Phase 3: parallax, per-screen layouts, motion tilt */
+    .tarot-frame{perspective:900px;transform-style:preserve-3d}
+    .tarot-card{transform:rotateX(var(--tilt-x,0deg)) rotateY(var(--tilt-y,0deg));transform-style:preserve-3d;will-change:transform}
+    .tarot-front-art{transform-style:preserve-3d}
+    .tarot-front-art img{width:120%;height:120%;max-width:none;position:absolute;inset:-10%;object-fit:cover;object-position:center 22%;transform:translate3d(var(--shift-x,0px),var(--shift-y,0px),24px);will-change:transform}
+    .tarot-card.is-reversed .tarot-front-art img{transform:translate3d(var(--shift-x,0px),var(--shift-y,0px),24px) rotate(180deg)}
+    .tarot-front-cap{position:relative;z-index:2;transform:translate3d(calc(var(--shift-x,0px) * -0.3),calc(var(--shift-y,0px) * -0.3),32px)}
+    .tarot-shine{position:absolute;inset:-20% -30%;pointer-events:none;z-index:3;background:radial-gradient(circle at center,rgba(255,236,196,.5) 0%,rgba(255,236,196,0) 64%);mix-blend-mode:soft-light;opacity:var(--shine-o,0);transform:translate3d(var(--shine-tx,0px),var(--shine-ty,0px),40px);will-change:transform,opacity}
+    .detail-media.parallax-media{perspective:900px;overflow:hidden;position:relative;transform:rotateX(var(--tilt-x,0deg)) rotateY(var(--tilt-y,0deg));transform-style:preserve-3d}
+    .detail-media.parallax-media .detail-photo{width:100%;transform:translate3d(var(--shift-x,0px),var(--shift-y,0px),16px) scale(1.12);will-change:transform;display:block}
+    .detail-media .close{z-index:5}
+    .detail-media .tarot-shine{z-index:3}
+    .tilt-btn{border:1px solid var(--line);border-radius:999px;background:#fff;padding:8px 14px;font-size:13px;color:var(--ink)}
+    .tilt-btn[hidden]{display:none!important}
+    .spread-hint{text-align:center;margin:0 0 8px}
+    .spread-dots{display:none;justify-content:center;gap:8px;margin:4px 0 12px}
+    .spread-dots button{width:8px;height:8px;border-radius:50%;border:0;padding:0;background:var(--line);cursor:pointer}
+    .spread-dots button[aria-current="true"]{background:var(--green)}
+    .tarot-workspace{display:block}
+
+    /* Phone: mobile-first, 2-col deck, swipeable spread */
+    .deck-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+    .spread-stage{scrollbar-width:none}
+    .spread-stage::-webkit-scrollbar{display:none}
+
+    @media(max-width:699px){
+      .spread-stage{display:flex;justify-content:flex-start;align-items:stretch;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-inline:max(16px,env(safe-area-inset-left,0px));padding:4px 8px 18px;-webkit-overflow-scrolling:touch;flex-wrap:nowrap}
+      .spread-slot{flex:0 0 min(72vw,260px);max-width:none;scroll-snap-align:center}
+      .daily-card-wrap{width:min(260px,78vw)}
+      .spread-dots{display:flex}
+      .grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+    }
+    @media(max-width:400px){
+      .grid{grid-template-columns:1fr}
+      .daily-card-wrap{width:min(240px,84vw)}
+    }
+
+    /* Tablet: 3-col deck, side-by-side spread, 3 meaning columns */
+    @media(min-width:700px) and (max-width:1099px){
+      .deck-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+      .grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+      .hero{min-height:520px}
+      .spread-stage{gap:18px;justify-content:center}
+      .spread-slot{flex:1 1 0;max-width:none}
+      .daily-card-wrap{width:min(280px,46vw)}
+      .reading-panel{grid-template-columns:repeat(3,minmax(0,1fr));max-width:none;margin:0}
+      .reading-panel .meaning-block h3{font-size:20px}
+      #cards{padding-left:max(28px,env(safe-area-inset-left,0px));padding-right:max(28px,env(safe-area-inset-right,0px))}
+    }
+
+    /* Desktop / large: wide deck, spread + meanings beside, larger hero */
+    @media(min-width:1100px){
+      main,#cards{max-width:1440px}
+      .hero{min-height:620px;padding-top:110px;padding-bottom:96px}
+      .hero h1{font-size:clamp(64px,7vw,108px)}
+      .ornament{width:280px;height:280px}
+      .grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:22px}
+      .deck-grid{grid-template-columns:repeat(6,minmax(0,1fr));gap:18px}
+      .daily-card-wrap{width:min(300px,26vw)}
+      .spread-stage{gap:24px;justify-content:flex-start}
+      .spread-slot{flex:1 1 0;max-width:260px}
+      .tarot-workspace[data-mode="spread"]{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(300px,0.85fr);gap:12px 40px;align-items:start}
+      .tarot-workspace[data-mode="spread"] .reading-panel{margin:0;max-width:none}
+      .tarot-workspace[data-mode="spread"] #tarotStage{grid-column:1;grid-row:1}
+      .tarot-workspace[data-mode="spread"] .reading-panel{grid-column:2;grid-row:1}
+    }
+    @media(min-width:1400px){
+      .deck-grid{grid-template-columns:repeat(6,minmax(0,1fr));gap:20px}
+    }
+
+    @media(hover:hover) and (pointer:fine){
+      .tarot-frame{transition:box-shadow .25s ease}
+      .tarot-card{cursor:pointer}
+      .tarot-frame:hover .tarot-face{box-shadow:0 16px 36px rgba(20,43,41,.3)}
+      .card:hover{transform:translateY(-3px)}
+    }
+    @media(prefers-reduced-motion:reduce){
+      .tarot-card,.tarot-front-art img,.tarot-front-cap,.tarot-shine,.detail-media.parallax-media,.detail-media.parallax-media .detail-photo{transform:none!important;transition:none!important;will-change:auto}
+      .tarot-shine{opacity:0!important}
+      .card:hover{transform:none}
+    }
+
   </style>
 </head>
 <body>
@@ -130,9 +213,12 @@
       </div>
       <label class="reversal-wrap"><input id="reversalToggle" type="checkbox" checked> <span data-i18n="reversalsLabel">Allow reversed cards</span></label>
       <button class="surprise" id="drawAgain" type="button" hidden data-i18n="drawAgain">Draw again</button>
+      <button class="tilt-btn" id="tiltEnable" type="button" hidden data-i18n="tiltEnable">Enable motion tilt</button>
     </div>
-    <div id="tarotStage"></div>
-    <div id="readingPanel" class="reading-panel"></div>
+    <div class="tarot-workspace" id="tarotWorkspace" data-mode="daily">
+      <div id="tarotStage"></div>
+      <div id="readingPanel" class="reading-panel"></div>
+    </div>
   </section>
   <footer class="footer" id="sources"><div class="footer-about"><strong data-i18n="aboutTitle">About this atlas</strong><br><span data-i18n="aboutText">These entries summarize folklore as recorded in cultural and reference sources. Names, descriptions, and beliefs can change from one region and storyteller to another; folklore is living tradition, not a claim about supernatural fact.</span></div><div class="footer-sources"><strong data-i18n="sourcesLabel">Further reading</strong><a href="https://www.encyclopediaofukraine.com/display.asp?linkpath=pages%5CD%5CE%5CDemonology.htm" target="_blank" rel="noreferrer">Encyclopedia of Ukraine</a><a href="https://honchar.org.ua/en/blog/ukrainian-worldviews-and-folk-demonology-i154" target="_blank" rel="noreferrer">Ivan Honchar Museum</a><a href="https://www.ukraineworld.org/en/articles/analysis/ukrainian-mythology" target="_blank" rel="noreferrer">UkraineWorld · Ukrainian Institute</a></div></footer>
   <dialog id="detailDialog" aria-labelledby="detailTitle"><div id="dialogContent"></div></dialog>
@@ -141,7 +227,7 @@
     const DATA=JSON.parse(document.getElementById("atlas-data").textContent);
     const creatures=DATA.creatures,sources=DATA.sources,sourceNames=DATA.sourceNames;
     const byId=Object.fromEntries(creatures.map(c=>[c.id,c]));
-    const copy={en:{brandSub:"Folklore atlas",navExplore:"Explore",navCards:"Cards",navSources:"Sources",eyebrow:"Stories carried through generations",heroTitle:"A field guide to <em>Ukraine’s unseen world.</em>",heroText:"Step into forests, rivers, and old homesteads where folklore gave a face to the forces of nature and the mysteries of everyday life.",heroNote:"Bilingual folklore atlas · 22 figures · Major Arcana cards",sectionKicker:"The bestiary",sectionTitle:"Meet the folk figures",searchLabel:"Search creatures",searchPlaceholder:"Search a name, place, or story…",surprise:"✦ Surprise me",aboutTitle:"About this atlas",aboutText:"These entries summarize folklore as recorded in cultural and reference sources. Names, descriptions, and beliefs can change from one region and storyteller to another; folklore is living tradition, not a claim about supernatural fact.",sourcesLabel:"Further reading",results:"figures",noResults:"No figures found",noResultsText:"Try another name or clear the filters.",read:"Open story",story:"The story",sourceLabel:"Sources & further reading",notice:"Folklore varies by region and storyteller. This entry is a short introduction, not a definitive account.",photoCaption:"AI-generated illustration (Grok Imagine)",tarotKicker:"The cards",tarotTitle:"A Major Arcana of Ukrainian folklore",tarotIntro:"Twenty-two figures from Ukrainian folklore, each paired with one of the Major Arcana. Draw a card for the day, lay a three-card reading, or browse the whole deck.",tarotDisclaimer:"This game is for reflection and for fun. The pairings are a modern reading, not a traditional village tarot, and they are not a claim about fate or the supernatural.",modeDaily:"Daily card",modeSpread:"Past · Present · Future",modeDeck:"The deck",reversalsLabel:"Allow reversed cards",drawAgain:"Draw again",past:"Past",present:"Present",future:"Future",upright:"Upright",reversed:"Reversed",todayCard:"Today’s card",pairing:"Why this pairing",openCard:"Open story",dailyHint:"This card stays with you until midnight.",spreadHint:"Three different figures. Tap a card to turn it, then tap again to open its story."},uk:{brandSub:"Атлас фольклору",navExplore:"Дослідити",navCards:"Карти",navSources:"Джерела",eyebrow:"Оповіді, що живуть поколіннями",heroTitle:"Путівник <em>невидимим світом України.</em>",heroText:"Зазирніть до лісів, річок і давніх осель, де фольклор надавав образ силам природи та загадкам повсякденного життя.",heroNote:"Двомовний атлас фольклору · 22 постаті · карти Старших Арканів",sectionKicker:"Бестіарій",sectionTitle:"Знайомство з народними постатями",searchLabel:"Пошук істот",searchPlaceholder:"Шукайте назву, місце чи оповідь…",surprise:"✦ Обрати навмання",aboutTitle:"Про цей атлас",aboutText:"Ці описи стисло переказують фольклорні уявлення, зафіксовані в культурних і довідкових джерелах. Назви, описи й вірування різняться між регіонами та оповідачами; фольклор — жива традиція, а не твердження про надприродні факти.",sourcesLabel:"Почитати далі",results:"постатей",noResults:"Нічого не знайдено",noResultsText:"Спробуйте іншу назву або скиньте фільтри.",read:"Відкрити оповідь",story:"Оповідь",sourceLabel:"Джерела й додаткове читання",notice:"Фольклор різниться залежно від регіону та оповідача. Це короткий вступ, а не остаточний опис.",photoCaption:"Ілюстрація, згенерована ШІ (Grok Imagine)",tarotKicker:"Карти",tarotTitle:"Старші Аркани українського фольклору",tarotIntro:"Двадцять дві постаті українського фольклору, кожна з яких зіставлена з однією картою Старших Арканів. Витягніть карту дня, розкладіть три карти або перегляньте всю колоду.",tarotDisclaimer:"Ця гра — для роздумів і для втіхи. Зіставлення є сучасним прочитанням, а не традиційним сільським таро, і не є твердженням про долю чи надприродне.",modeDaily:"Карта дня",modeSpread:"Минуле · Теперішнє · Майбутнє",modeDeck:"Колода",reversalsLabel:"Дозволити перевернуті карти",drawAgain:"Витягти ще раз",past:"Минуле",present:"Теперішнє",future:"Майбутнє",upright:"Пряма",reversed:"Перевернута",todayCard:"Карта дня",pairing:"Чому саме це зіставлення",openCard:"Відкрити оповідь",dailyHint:"Ця карта лишається з вами до півночі.",spreadHint:"Три різні постаті. Торкніться карти, щоб перевернути, і ще раз — щоб відкрити оповідь."}};
+    const copy={en:{brandSub:"Folklore atlas",navExplore:"Explore",navCards:"Cards",navSources:"Sources",eyebrow:"Stories carried through generations",heroTitle:"A field guide to <em>Ukraine’s unseen world.</em>",heroText:"Step into forests, rivers, and old homesteads where folklore gave a face to the forces of nature and the mysteries of everyday life.",heroNote:"Bilingual folklore atlas · 22 figures · Major Arcana cards",sectionKicker:"The bestiary",sectionTitle:"Meet the folk figures",searchLabel:"Search creatures",searchPlaceholder:"Search a name, place, or story…",surprise:"✦ Surprise me",aboutTitle:"About this atlas",aboutText:"These entries summarize folklore as recorded in cultural and reference sources. Names, descriptions, and beliefs can change from one region and storyteller to another; folklore is living tradition, not a claim about supernatural fact.",sourcesLabel:"Further reading",results:"figures",noResults:"No figures found",noResultsText:"Try another name or clear the filters.",read:"Open story",story:"The story",sourceLabel:"Sources & further reading",notice:"Folklore varies by region and storyteller. This entry is a short introduction, not a definitive account.",photoCaption:"AI-generated illustration (Grok Imagine)",tarotKicker:"The cards",tarotTitle:"A Major Arcana of Ukrainian folklore",tarotIntro:"Twenty-two figures from Ukrainian folklore, each paired with one of the Major Arcana. Draw a card for the day, lay a three-card reading, or browse the whole deck.",tarotDisclaimer:"This game is for reflection and for fun. The pairings are a modern reading, not a traditional village tarot, and they are not a claim about fate or the supernatural.",modeDaily:"Daily card",modeSpread:"Past · Present · Future",modeDeck:"The deck",reversalsLabel:"Allow reversed cards",drawAgain:"Draw again",past:"Past",present:"Present",future:"Future",upright:"Upright",reversed:"Reversed",todayCard:"Today’s card",pairing:"Why this pairing",openCard:"Open story",dailyHint:"This card stays with you until midnight.",spreadHint:"Three different figures. Tap a card to turn it, then tap again to open its story.",tiltEnable:"Enable motion tilt",tiltEnabled:"Motion tilt on",swipeHint:"Swipe to see each card."},uk:{brandSub:"Атлас фольклору",navExplore:"Дослідити",navCards:"Карти",navSources:"Джерела",eyebrow:"Оповіді, що живуть поколіннями",heroTitle:"Путівник <em>невидимим світом України.</em>",heroText:"Зазирніть до лісів, річок і давніх осель, де фольклор надавав образ силам природи та загадкам повсякденного життя.",heroNote:"Двомовний атлас фольклору · 22 постаті · карти Старших Арканів",sectionKicker:"Бестіарій",sectionTitle:"Знайомство з народними постатями",searchLabel:"Пошук істот",searchPlaceholder:"Шукайте назву, місце чи оповідь…",surprise:"✦ Обрати навмання",aboutTitle:"Про цей атлас",aboutText:"Ці описи стисло переказують фольклорні уявлення, зафіксовані в культурних і довідкових джерелах. Назви, описи й вірування різняться між регіонами та оповідачами; фольклор — жива традиція, а не твердження про надприродні факти.",sourcesLabel:"Почитати далі",results:"постатей",noResults:"Нічого не знайдено",noResultsText:"Спробуйте іншу назву або скиньте фільтри.",read:"Відкрити оповідь",story:"Оповідь",sourceLabel:"Джерела й додаткове читання",notice:"Фольклор різниться залежно від регіону та оповідача. Це короткий вступ, а не остаточний опис.",photoCaption:"Ілюстрація, згенерована ШІ (Grok Imagine)",tarotKicker:"Карти",tarotTitle:"Старші Аркани українського фольклору",tarotIntro:"Двадцять дві постаті українського фольклору, кожна з яких зіставлена з однією картою Старших Арканів. Витягніть карту дня, розкладіть три карти або перегляньте всю колоду.",tarotDisclaimer:"Ця гра — для роздумів і для втіхи. Зіставлення є сучасним прочитанням, а не традиційним сільським таро, і не є твердженням про долю чи надприродне.",modeDaily:"Карта дня",modeSpread:"Минуле · Теперішнє · Майбутнє",modeDeck:"Колода",reversalsLabel:"Дозволити перевернуті карти",drawAgain:"Витягти ще раз",past:"Минуле",present:"Теперішнє",future:"Майбутнє",upright:"Пряма",reversed:"Перевернута",todayCard:"Карта дня",pairing:"Чому саме це зіставлення",openCard:"Відкрити оповідь",dailyHint:"Ця карта лишається з вами до півночі.",spreadHint:"Три різні постаті. Торкніться карти, щоб перевернути, і ще раз — щоб відкрити оповідь.",tiltEnable:"Увімкнути нахил",tiltEnabled:"Нахил увімкнено",swipeHint:"Проведіть, щоб побачити кожну карту."}};
     const realmNames={en:{all:"All",forest:"Forest",water:"Water",home:"Home",other:"Other"},uk:{all:"Усі",forest:"Ліс",water:"Вода",home:"Оселя",other:"Інші"}};
     const LANG_KEY="dyvosvit-lang",REV_KEY="dyvosvit-reversals",DAILY_PREFIX="dyvosvit-daily-";
     let lang=localStorage.getItem(LANG_KEY)==="uk"?"uk":"en";
@@ -168,18 +254,18 @@
     function cardMarkup(c){const t=copy[lang];return `<article class="card"><button type="button" data-open="${c.id}"><div class="card-art"><img src="images/${c.id}.jpg" alt="${esc(c.alt[lang])}" width="800" height="600" loading="lazy" decoding="async"><span class="photo-credit">${t.photoCaption}</span></div><div class="card-body"><div class="card-meta"><span class="category">${realmNames[lang][c.realm]}</span><span class="latin">${esc(c.latin)}</span></div><h3>${esc(c.name)}</h3><p class="ukr-name">${esc(c.ukr)}</p><p class="card-desc">${esc(c.summary[lang])}</p><span class="read-more">${t.read} ↗</span></div></button></article>`;}
     function atlasList(){return DATA.atlasOrder.map(id=>byId[id]);}
     function render(){const term=search.value.trim().toLocaleLowerCase();const filtered=atlasList().filter(c=>(activeRealm==="all"||c.realm===activeRealm)&&matchesQuery(c,term));$("#resultCount").textContent=resultLabel(filtered.length);grid.innerHTML=filtered.length?filtered.map(cardMarkup).join(""):`<div class="empty" style="display:block"><strong>${copy[lang].noResults}</strong>${copy[lang].noResultsText}</div>`;grid.querySelectorAll("[data-open]").forEach(btn=>btn.addEventListener("click",()=>openDetail(btn.dataset.open)));}
-    function openDetail(id){const c=byId[id],t=copy[lang],a=c.arcana;const links=c.sourceIds.map(key=>`<a href="${esc(sources[key])}" target="_blank" rel="noreferrer">${esc(sourceNames[key]||key)} ↗</a>`).join("");$("#dialogContent").innerHTML=`<div class="detail-media"><button class="close" type="button" aria-label="${lang==="en"?"Close":"Закрити"}">×</button><img class="detail-photo" src="images/${c.id}.jpg" alt="${esc(c.alt[lang])}" width="800" height="600" loading="eager" decoding="async"></div><div class="detail-head"><span class="category">${realmNames[lang][c.realm]}</span><h2 id="detailTitle">${esc(c.name)}</h2><p>${esc(c.ukr)} · <i>${esc(c.latin)}</i></p><p class="detail-arcana">${esc(a.roman)} · ${esc(a[lang])}</p></div><div class="detail-content"><p class="photo-credit">${t.photoCaption}</p><h3>${t.pairing}</h3><p class="reason">${esc(a.reason[lang])}</p><dl class="meanings"><div><dt>${t.upright}</dt><dd>${esc(a.upright[lang])}</dd></div><div><dt>${t.reversed}</dt><dd>${esc(a.reversed[lang])}</dd></div></dl><h3>${t.story}</h3><p>${esc(c.detail[lang])}</p><h3>${t.sourceLabel}</h3><div class="detail-sources">${links}</div><p class="notice">${t.notice}</p></div>`;$("#dialogContent .close").addEventListener("click",()=>dialog.close());dialog.showModal();$("#dialogContent .close").focus();}
-    function tarotCardHTML(reading,opts){const c=byId[reading.id],a=c.arcana,rev=displayReversed(reading),flipped=opts.flipped,t=copy[lang];const label=a.roman+" · "+a[lang]+" · "+figureName(c)+(rev?" ("+t.reversed+")":"");return `<div class="tarot-frame"><div class="tarot-card${rev?" is-reversed":""}${flipped?" is-flipped":""}" role="button" tabindex="0" data-card-id="${c.id}" data-openable="${opts.openOnSecondTap?"1":"0"}" aria-label="${esc(label)}"><span class="tarot-inner"><span class="tarot-face tarot-back" aria-hidden="true"><span>✳</span></span><span class="tarot-face tarot-front"><span class="tarot-front-art"><img src="images/${c.id}.jpg" alt="${esc(c.alt[lang])}" width="800" height="600" loading="${opts.lazy?"lazy":"eager"}" decoding="async"></span><span class="tarot-front-cap"><span class="tarot-roman">${esc(a.roman)}</span><span class="tarot-arcana">${esc(a[lang])}</span><span class="tarot-figure">${esc(figureName(c))}</span></span></span></span></div></div>`;}
-    function bindCardFlips(root){root.querySelectorAll(".tarot-card").forEach(btn=>{const act=()=>{if(!btn.classList.contains("is-flipped")){btn.classList.add("is-flipped");return;}if(btn.dataset.openable==="1")openDetail(btn.dataset.cardId);};btn.addEventListener("click",act);btn.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();act();}});});}
+    function openDetail(id){const c=byId[id],t=copy[lang],a=c.arcana;const links=c.sourceIds.map(key=>`<a href="${esc(sources[key])}" target="_blank" rel="noreferrer">${esc(sourceNames[key]||key)} ↗</a>`).join("");$("#dialogContent").innerHTML=`<div class="detail-media parallax-media"><button class="close" type="button" aria-label="${lang==="en"?"Close":"Закрити"}">×</button><img class="detail-photo" src="images/${c.id}.jpg" alt="${esc(c.alt[lang])}" width="800" height="600" loading="eager" decoding="async"><span class="tarot-shine" aria-hidden="true"></span></div><div class="detail-head"><span class="category">${realmNames[lang][c.realm]}</span><h2 id="detailTitle">${esc(c.name)}</h2><p>${esc(c.ukr)} · <i>${esc(c.latin)}</i></p><p class="detail-arcana">${esc(a.roman)} · ${esc(a[lang])}</p></div><div class="detail-content"><p class="photo-credit">${t.photoCaption}</p><h3>${t.pairing}</h3><p class="reason">${esc(a.reason[lang])}</p><dl class="meanings"><div><dt>${t.upright}</dt><dd>${esc(a.upright[lang])}</dd></div><div><dt>${t.reversed}</dt><dd>${esc(a.reversed[lang])}</dd></div></dl><h3>${t.story}</h3><p>${esc(c.detail[lang])}</p><h3>${t.sourceLabel}</h3><div class="detail-sources">${links}</div><p class="notice">${t.notice}</p></div>`;$("#dialogContent .close").addEventListener("click",()=>dialog.close());dialog.showModal();$("#dialogContent .close").focus();bindParallax(dialog);}
+    function tarotCardHTML(reading,opts){const c=byId[reading.id],a=c.arcana,rev=displayReversed(reading),flipped=opts.flipped,t=copy[lang];const label=a.roman+" · "+a[lang]+" · "+figureName(c)+(rev?" ("+t.reversed+")":"");return `<div class="tarot-frame"><div class="tarot-card${rev?" is-reversed":""}${flipped?" is-flipped":""}" role="button" tabindex="0" data-card-id="${c.id}" data-openable="${opts.openOnSecondTap?"1":"0"}" aria-label="${esc(label)}"><span class="tarot-inner"><span class="tarot-face tarot-back" aria-hidden="true"><span>✳</span></span><span class="tarot-face tarot-front"><span class="tarot-front-art"><img src="images/${c.id}.jpg" alt="${esc(c.alt[lang])}" width="800" height="600" loading="${opts.lazy?"lazy":"eager"}" decoding="async"></span><span class="tarot-front-cap"><span class="tarot-roman">${esc(a.roman)}</span><span class="tarot-arcana">${esc(a[lang])}</span><span class="tarot-figure">${esc(figureName(c))}</span></span><span class="tarot-shine" aria-hidden="true"></span></span></span></div></div>`;}
+    function bindCardFlips(root){root.querySelectorAll(".tarot-card").forEach(btn=>{const act=()=>{if(btn.dataset.skipClick==="1"){btn.dataset.skipClick="0";return;}if(!btn.classList.contains("is-flipped")){btn.classList.add("is-flipped");return;}if(btn.dataset.openable==="1")openDetail(btn.dataset.cardId);};btn.addEventListener("click",act);btn.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();act();}});});bindParallax(root);}
     function meaningBlock(reading,heading){const c=byId[reading.id],a=c.arcana,t=copy[lang],rev=displayReversed(reading);const meaning=rev?a.reversed[lang]:a.upright[lang];return `<article class="meaning-block"><h3>${esc(heading)}: ${esc(figureName(c))}${rev?`<span class="rev-tag">${t.reversed}</span>`:""}</h3><p class="meaning-meta">${esc(a.roman)} · ${esc(a[lang])} · ${rev?t.reversed:t.upright}</p><p>${esc(meaning)}</p><button type="button" class="linkish" data-open="${c.id}">${t.openCard} ↗</button></article>`;}
     function fillReading(readings,headings){const panel=$("#readingPanel");panel.innerHTML=readings.map((r,i)=>meaningBlock(r,headings[i])).join("");panel.querySelectorAll("[data-open]").forEach(btn=>btn.addEventListener("click",()=>openDetail(btn.dataset.open)));}
     function animateFlip(root){const cards=[...root.querySelectorAll(".tarot-card")];if(reduced){cards.forEach(c=>c.classList.add("is-flipped"));return;}cards.forEach((el,i)=>setTimeout(()=>el.classList.add("is-flipped"),420+i*280));}
     function renderDaily(animate){ensureDaily();const t=copy[lang];const stamp=todayStamp();const dateLabel=lang==="uk"?stamp.split("-").reverse().join("."):stamp;$("#tarotStage").innerHTML=`<div class="daily-stage"><div class="daily-card-wrap">${tarotCardHTML(dailyReading,{flipped:!animate,openOnSecondTap:true,lazy:false})}</div><div class="daily-date">${esc(t.todayCard)} · ${esc(dateLabel)}</div><p class="tarot-intro" style="text-align:center;margin-top:8px">${esc(t.dailyHint)}</p></div>`;fillReading([dailyReading],[t.todayCard]);bindCardFlips($("#tarotStage"));if(animate)animateFlip($("#tarotStage"));}
     function newSpread(){const a=pickCard([]),b=pickCard([a.id]),c=pickCard([a.id,b.id]);spreadReading=[a,b,c];}
-    function renderSpread(animate){if(!spreadReading)newSpread();const t=copy[lang];const labels=[t.past,t.present,t.future];$("#tarotStage").innerHTML=`<div class="spread-stage">${spreadReading.map((r,i)=>`<div class="spread-slot"><div class="spread-label">${esc(labels[i])}</div>${tarotCardHTML(r,{flipped:!animate,openOnSecondTap:true,lazy:false})}</div>`).join("")}</div><p class="tarot-intro" style="text-align:center">${esc(t.spreadHint)}</p>`;fillReading(spreadReading,labels);bindCardFlips($("#tarotStage"));if(animate)animateFlip($("#tarotStage"));}
+    function renderSpread(animate){if(!spreadReading)newSpread();const t=copy[lang];const labels=[t.past,t.present,t.future];const phone=isPhone();const hint=phone?t.swipeHint:t.spreadHint;const dots=phone?`<div class="spread-dots" id="spreadDots">${labels.map((lb,i)=>`<button type="button" data-dot="${i}" aria-label="${esc(lb)}"${i===0?" aria-current=\"true\"":""}></button>`).join("")}</div>`:"";$("#tarotStage").innerHTML=`<div class="spread-stage" id="spreadStage">${spreadReading.map((r,i)=>`<div class="spread-slot"><div class="spread-label">${esc(labels[i])}</div>${tarotCardHTML(r,{flipped:!animate,openOnSecondTap:true,lazy:false})}</div>`).join("")}</div>${dots}<p class="tarot-intro spread-hint">${esc(hint)}</p>`;fillReading(spreadReading,labels);bindCardFlips($("#tarotStage"));bindSpreadCarousel();if(animate)animateFlip($("#tarotStage"));}
     function renderDeck(){$("#tarotStage").innerHTML=`<div class="deck-grid">${DATA.deckOrder.map(id=>`<div>${tarotCardHTML({id,reversed:false},{flipped:true,openOnSecondTap:true,lazy:true})}</div>`).join("")}</div>`;$("#readingPanel").innerHTML="";bindCardFlips($("#tarotStage"));}
     function renderTarot(animate){if(tarotMode==="daily")renderDaily(!!animate);else if(tarotMode==="spread")renderSpread(!!animate);else renderDeck();syncTarotChrome();}
-    function syncTarotChrome(){document.querySelectorAll("#tarotModes .mode-btn").forEach(btn=>{const on=btn.dataset.mode===tarotMode;btn.setAttribute("aria-pressed",on);});$("#drawAgain").hidden=tarotMode!=="spread";$("#reversalToggle").checked=reversalsOn;}
+    function syncTarotChrome(){document.querySelectorAll("#tarotModes .mode-btn").forEach(btn=>{const on=btn.dataset.mode===tarotMode;btn.setAttribute("aria-pressed",on);});$("#drawAgain").hidden=tarotMode!=="spread";$("#reversalToggle").checked=reversalsOn;const ws=$("#tarotWorkspace");if(ws)ws.dataset.mode=tarotMode;syncGyroBtn();}
     function setMode(mode,animate){tarotMode=mode;if(mode==="spread"&&!spreadReading)newSpread();renderTarot(animate);}
     $("#languageToggle").addEventListener("click",()=>{lang=lang==="en"?"uk":"en";localStorage.setItem(LANG_KEY,lang);applyLanguage();});
     search.addEventListener("input",render);
@@ -188,6 +274,140 @@
     $("#tarotModes").addEventListener("click",e=>{const btn=e.target.closest("[data-mode]");if(!btn)return;setMode(btn.dataset.mode,btn.dataset.mode!=="deck");});
     $("#reversalToggle").addEventListener("change",()=>{reversalsOn=$("#reversalToggle").checked;localStorage.setItem(REV_KEY,reversalsOn?"on":"off");renderTarot(false);});
     $("#drawAgain").addEventListener("click",()=>{newSpread();renderSpread(true);});
+
+    const TILT_MAX=11, SHIFT_MAX=16, SHINE_X=42, SHINE_Y=32;
+    const finePointer=()=>window.matchMedia("(pointer:fine)").matches;
+    const isPhone=()=>window.matchMedia("(max-width:699px)").matches;
+    const lerp=(a,b,t)=>a+(b-a)*t;
+    const gyro={active:false,perm:"unknown",x:0,y:0};
+    const tiltMap=new WeakMap();
+    let tiltRaf=0, tiltWanted=false;
+    function tiltState(el){let s=tiltMap.get(el);if(!s){s={tx:0,ty:0,cx:0,cy:0,hover:false,drag:false,press:false,sx:0,sy:0,pid:null,moved:false};tiltMap.set(el,s);}return s;}
+    function tiltTargets(){return [...document.querySelectorAll(".tarot-card, .detail-media.parallax-media")];}
+    function applyTilt(el,s){
+      const rx=(-s.cy*TILT_MAX).toFixed(3), ry=(s.cx*TILT_MAX).toFixed(3);
+      el.style.setProperty("--tilt-x", rx+"deg");
+      el.style.setProperty("--tilt-y", ry+"deg");
+      el.style.setProperty("--shift-x", (s.cx*-SHIFT_MAX).toFixed(3)+"px");
+      el.style.setProperty("--shift-y", (s.cy*-SHIFT_MAX).toFixed(3)+"px");
+      el.style.setProperty("--shine-tx", (s.cx*SHINE_X).toFixed(3)+"px");
+      el.style.setProperty("--shine-ty", (s.cy*SHINE_Y).toFixed(3)+"px");
+      const live=s.hover||s.drag||(gyro.active&&!s.hover);
+      el.style.setProperty("--shine-o", live? "0.95" : Math.min(1,(Math.abs(s.cx)+Math.abs(s.cy))).toFixed(3));
+    }
+    function resetTilt(el){const s=tiltState(el);s.tx=s.ty=s.cx=s.cy=0;s.hover=s.drag=s.press=false;applyTilt(el,s);}
+    function tiltTick(){
+      tiltRaf=0;
+      if(reduced)return;
+      let need=false;
+      for(const el of tiltTargets()){
+        const s=tiltState(el);
+        if(gyro.active&&!s.hover&&!s.drag){s.tx=gyro.x;s.ty=gyro.y;}
+        else if(!s.hover&&!s.drag){s.tx=0;s.ty=0;}
+        s.cx=lerp(s.cx,s.tx,0.16);s.cy=lerp(s.cy,s.ty,0.16);
+        applyTilt(el,s);
+        if(s.hover||s.drag||gyro.active||Math.abs(s.cx)>0.003||Math.abs(s.cy)>0.003)need=true;
+      }
+      if(need)tiltRaf=requestAnimationFrame(tiltTick);
+    }
+    function kickTilt(){if(!reduced&&!tiltRaf)tiltRaf=requestAnimationFrame(tiltTick);}
+    function pointToTilt(el,cx,cy){
+      const r=el.getBoundingClientRect();
+      if(!r.width||!r.height)return;
+      const nx=((cx-r.left)/r.width-0.5)*2;
+      const ny=((cy-r.top)/r.height-0.5)*2;
+      const s=tiltState(el);
+      s.tx=Math.max(-1,Math.min(1,nx));
+      s.ty=Math.max(-1,Math.min(1,ny));
+      kickTilt();
+    }
+    function onOrient(e){
+      const g=typeof e.gamma==="number"?e.gamma:0;
+      const b=typeof e.beta==="number"?e.beta:0;
+      gyro.x=Math.max(-1,Math.min(1,g/28));
+      gyro.y=Math.max(-1,Math.min(1,(b-40)/28));
+      kickTilt();
+    }
+    async function enableGyro(){
+      if(reduced)return false;
+      try{
+        if(typeof DeviceOrientationEvent!=="undefined"&&typeof DeviceOrientationEvent.requestPermission==="function"){
+          const res=await DeviceOrientationEvent.requestPermission();
+          if(res!=="granted"){gyro.perm="denied";syncGyroBtn();return false;}
+        }else if(typeof DeviceOrientationEvent==="undefined"){
+          gyro.perm="unsupported";syncGyroBtn();return false;
+        }
+        window.addEventListener("deviceorientation",onOrient,{passive:true});
+        gyro.active=true;gyro.perm="granted";
+        try{localStorage.setItem("dyvosvit-gyro","on");}catch(e){}
+        kickTilt();syncGyroBtn();return true;
+      }catch(e){gyro.perm="denied";syncGyroBtn();return false;}
+    }
+    function syncGyroBtn(){
+      const btn=$("#tiltEnable");
+      if(!btn)return;
+      const can= !reduced && typeof DeviceOrientationEvent!=="undefined" && (("ontouchstart" in window)||window.matchMedia("(pointer:coarse)").matches);
+      if(!can||gyro.perm==="unsupported"){btn.hidden=true;return;}
+      if(gyro.active||gyro.perm==="granted"){btn.hidden=true;return;}
+      btn.hidden=false;
+      btn.textContent=copy[lang].tiltEnable;
+    }
+    function bindParallax(root){
+      if(reduced)return;
+      const nodes=(root||document).querySelectorAll(".tarot-card, .detail-media.parallax-media");
+      nodes.forEach(el=>{
+        if(el.dataset.tiltBound==="1")return;
+        el.dataset.tiltBound="1";
+        el.addEventListener("pointerenter",e=>{
+          if(e.pointerType==="mouse"||e.pointerType==="pen"){tiltState(el).hover=true;pointToTilt(el,e.clientX,e.clientY);}
+        });
+        el.addEventListener("pointermove",e=>{
+          const s=tiltState(el);
+          if(s.press){
+            const dx=e.clientX-s.sx, dy=e.clientY-s.sy;
+            if(!s.drag&&Math.hypot(dx,dy)>8){
+              if(el.closest(".spread-stage")&&isPhone()&&Math.abs(dx)>Math.abs(dy)){s.press=false;return;}
+              s.drag=true;s.moved=true;
+              try{el.setPointerCapture(e.pointerId);}catch(err){}
+            }
+            if(s.drag){s.hover=false;pointToTilt(el,e.clientX,e.clientY);e.preventDefault();}
+          }else if(s.hover){pointToTilt(el,e.clientX,e.clientY);}
+        });
+        el.addEventListener("pointerleave",()=>{const s=tiltState(el);s.hover=false;if(!s.drag)kickTilt();});
+        el.addEventListener("pointerdown",e=>{
+          const s=tiltState(el);s.press=true;s.moved=false;s.sx=e.clientX;s.sy=e.clientY;s.pid=e.pointerId;
+          if(gyro.perm==="unknown"&&typeof DeviceOrientationEvent!=="undefined"&&typeof DeviceOrientationEvent.requestPermission==="function"){
+            enableGyro();
+          }
+        });
+        const end=e=>{
+          const s=tiltState(el);
+          if(s.moved)el.dataset.skipClick="1";
+          s.press=s.drag=s.moved=false;s.hover=false;kickTilt();
+        };
+        el.addEventListener("pointerup",end);
+        el.addEventListener("pointercancel",end);
+      });
+      kickTilt();
+    }
+
+    function bindSpreadCarousel(){
+      const stage=$("#spreadStage"), dots=$("#spreadDots");
+      if(!stage||!dots)return;
+      const slots=[...stage.querySelectorAll(".spread-slot")];
+      let to=0;
+      const sync=()=>{
+        const mid=stage.scrollLeft+stage.clientWidth/2;
+        let best=0,dist=1e9;
+        slots.forEach((s,i)=>{const c=s.offsetLeft+s.offsetWidth/2-stage.offsetLeft;const d=Math.abs(c-mid);if(d<dist){dist=d;best=i;}});
+        dots.querySelectorAll("button").forEach((b,i)=>b.setAttribute("aria-current",i===best?"true":"false"));
+      };
+      stage.addEventListener("scroll",()=>{cancelAnimationFrame(to);to=requestAnimationFrame(sync);},{passive:true});
+      dots.addEventListener("click",e=>{const b=e.target.closest("[data-dot]");if(!b)return;slots[+b.dataset.dot].scrollIntoView({inline:"center",block:"nearest",behavior:reduced?"auto":"smooth"});});
+      sync();
+    }
+
+    $("#tiltEnable").addEventListener("click",()=>enableGyro());
     applyLanguage();
     setMode("daily",true);
 
