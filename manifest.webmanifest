@@ -1,0 +1,25 @@
+{
+  "name": "Dyvosvit — Ukrainian Folklore Atlas",
+  "short_name": "Dyvosvit",
+  "description": "A bilingual atlas of 22 Ukrainian folklore figures, with a Major Arcana card game.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f4f0e6",
+  "theme_color": "#142b29",
+  "lang": "en",
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
