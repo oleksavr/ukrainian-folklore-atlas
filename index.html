@@ -57,18 +57,22 @@
     .daily-date{margin-top:10px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
     .spread-slot{display:flex;flex-direction:column;align-items:center;gap:8px;min-width:0;flex:1 1 0;max-width:220px}
     .spread-label{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);font-weight:700}
-    .tarot-frame{width:100%;aspect-ratio:200/230;position:relative;min-height:0}
+    .tarot-frame{width:100%;aspect-ratio:400/380;position:relative;min-height:0;container-type:inline-size;--plaque-fill:#f3e6c4}
     .tarot-card{position:absolute;inset:0;width:auto;height:auto;perspective:1200px;cursor:pointer;background:transparent;border:0;padding:0;margin:0;color:inherit;display:block;appearance:none;-webkit-appearance:none}
     .tarot-inner{position:absolute;inset:0;border-radius:10px}
     .tarot-face{position:absolute;inset:0;box-sizing:border-box;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:10px;overflow:hidden;box-shadow:0 10px 28px rgba(20,43,41,.22);border:1px solid rgba(20,43,41,.18);transition:transform .7s cubic-bezier(.2,.8,.2,1)}
     .tarot-back{transform:rotateY(0deg)}
-    .tarot-front{transform:rotateY(180deg);background:#142b29;display:flex;flex-direction:column;color:#f6f0e4;padding:16% 6% 5%;}
+    .tarot-front{transform:rotateY(180deg);background:#142b29;display:block;color:#f6f0e4;padding:0;}
     .tarot-card.is-flipped .tarot-front{transform:rotateY(0deg)}
     .tarot-card.is-flipped .tarot-back{transform:rotateY(-180deg)}
-    .tarot-front-art{flex:0 0 auto;width:100%;aspect-ratio:4/3;overflow:hidden;position:relative;background:#0d1a18;z-index:1;border-radius:1px}
-    .tarot-front-art img{width:108%;height:108%;max-width:none;position:absolute;left:-4%;top:-4%;object-fit:cover;object-position:center center;display:block}
+    .tarot-front-art{position:absolute;left:8%;width:84%;top:13.684%;height:66.316%;overflow:hidden;background:#0d1a18;z-index:1;border-radius:2px}
+    .tarot-front-art img{width:100%;height:100%;max-width:none;position:absolute;inset:0;object-fit:contain;object-position:center center;display:block}
     .tarot-card.is-reversed .tarot-front-art img{transform:rotate(180deg)}
-    .tarot-front-cap{padding:7px 2px 0;background:transparent;flex:1 1 auto;min-height:0;text-align:left;z-index:1;display:flex;flex-direction:column;justify-content:center}
+    .tarot-crest{position:absolute;top:4.6%;left:50%;transform:translateX(-50%);z-index:5;pointer-events:none;color:var(--frame-gold,#d4b36a);font:700 clamp(8px,7.2cqi,13px)/1 var(--serif);letter-spacing:.04em;text-align:center;max-width:12%}
+    .tarot-crest.is-long{font-size:clamp(7px,5.2cqi,10px);letter-spacing:0}
+    .tarot-front-cap{position:absolute;left:20%;right:20%;top:83.2%;height:9.6%;padding:0;background:transparent;text-align:center;z-index:5;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#2c2216;pointer-events:none}
+    .tarot-front-cap .tarot-arcana{font-family:var(--serif);font-size:clamp(9px,6.4cqi,16px);line-height:1.1;margin:0;font-weight:700}
+    .tarot-front-cap .tarot-figure{font-size:clamp(8px,4.6cqi,12px);line-height:1.15;margin-top:1px;color:#4a3b28}
     .tarot-roman{display:block;font-size:10px;letter-spacing:.16em;color:#e9c77e;font-weight:700}
     .tarot-arcana{display:block;font-family:var(--serif);font-size:clamp(13px,2.6vw,17px);line-height:1.15;margin:2px 0 0}
     .tarot-figure{display:block;font-size:11px;color:#e5d7b8;margin-top:3px}
@@ -106,9 +110,10 @@
     .tarot-frame{perspective:900px;transform-style:preserve-3d}
     .tarot-card{transform:rotateX(var(--tilt-x,0deg)) rotateY(var(--tilt-y,0deg));transform-style:preserve-3d;will-change:transform}
     .tarot-front-art{transform-style:preserve-3d}
-    .tarot-front-art img{width:108%;height:108%;max-width:none;position:absolute;left:-4%;top:-4%;object-fit:cover;object-position:center center;transform:translate3d(calc(var(--shift-x,0px) * .35),calc(var(--shift-y,0px) * .35),18px);will-change:transform}
-    .tarot-card.is-reversed .tarot-front-art img{transform:translate3d(calc(var(--shift-x,0px) * .35),calc(var(--shift-y,0px) * .35),18px) rotate(180deg)}
-    .tarot-front-cap{position:relative;z-index:2;transform:translate3d(calc(var(--shift-x,0px) * -0.15),calc(var(--shift-y,0px) * -0.15),24px)}
+    .tarot-front-art img{width:100%;height:100%;max-width:none;position:absolute;inset:0;object-fit:contain;object-position:center center;transform:translateZ(16px);will-change:transform}
+    .tarot-card.is-reversed .tarot-front-art img{transform:translateZ(16px) rotate(180deg)}
+    .tarot-front-cap{z-index:5;transform:translateZ(28px)}
+    .tarot-crest{transform:translateX(-50%) translateZ(28px)}
     .tarot-shine{position:absolute;inset:0;pointer-events:none;z-index:5;background:linear-gradient(180deg,rgba(255,236,196,.28) 0%,rgba(255,236,196,0) 16%);opacity:var(--shine-o,0);transform:translateZ(40px);will-change:opacity}
     .detail-media{box-sizing:border-box;padding:14px 14px 12px;background:#142b29}
     .detail-media .detail-art{overflow:hidden;position:relative;aspect-ratio:4/3;background:#0d1a18;border-radius:2px}
@@ -182,7 +187,8 @@
       .card:hover{transform:translateY(-3px)}
     }
     @media(prefers-reduced-motion:reduce){
-      .tarot-card,.tarot-front-art img,.tarot-front-cap,.tarot-shine,.detail-media.parallax-media,.detail-media.parallax-media .detail-photo{transform:none!important;transition:none!important;will-change:auto}
+      .tarot-card,.tarot-front-art img,.tarot-shine,.detail-media.parallax-media,.detail-media.parallax-media .detail-photo{transform:none!important;transition:none!important;will-change:auto}
+      .tarot-crest{transform:translateX(-50%)!important}
       .tarot-shine{opacity:0!important}
       .card:hover{transform:none}
     }
@@ -208,7 +214,7 @@
     .page-depth .spark{position:absolute;width:3px;height:3px;border-radius:50%;background:#f6e7a2;opacity:.0}
     header.topbar,section,main,footer,dialog,#cards,.hero{position:relative;z-index:1}
     header.topbar{z-index:6}
-    .gothic-frame{color:var(--frame-gold,#d4b36a);position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:4;overflow:visible;
+    .gothic-frame,.nouveau-frame{color:var(--frame-gold,#d4b36a);position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:4;overflow:visible;
       filter:drop-shadow(0 0 0.4px var(--frame-gold, #d4b36a));
       transform:translateZ(36px)}
     .gothic-frame use,.gothic-frame path,.gothic-frame rect,.gothic-frame circle{stroke:var(--frame-gold,#d4b36a);fill:none}
@@ -320,40 +326,522 @@
     body{padding-bottom:64px}
     @keyframes folk-spark{0%,100%{opacity:0;transform:translate3d(0,8px,0) scale(.6)}40%{opacity:.85;transform:translate3d(4px,-10px,0) scale(1)}70%{opacity:.4;transform:translate3d(-3px,-18px,0) scale(.8)}}
 
+
+
+    html[data-theme="folk"] .tarot-frame{--plaque-fill:#f6e6c4}
+    html[data-theme="futuristic"] .tarot-frame{--plaque-fill:#0b1c22}
+    html[data-theme="futuristic"] .tarot-front-cap{color:#d7f7ff}
+    html[data-theme="futuristic"] .tarot-front-cap .tarot-figure{color:#8fd8e6}
+    /* Hero picture: show the full 4:3 image, never crop the head */
+    .hero{overflow:visible;display:flex;align-items:center;justify-content:space-between;gap:clamp(20px,4vw,56px);flex-wrap:wrap}
+    .hero-visual{position:relative;z-index:1;flex:1 1 260px;max-width:min(46vw,480px);min-width:0}
+    .hero-visual img{width:100%;height:auto;max-height:min(52vh,420px);aspect-ratio:4/3;object-fit:contain;object-position:center center;display:block;border-radius:18px;box-shadow:0 18px 48px rgba(0,0,0,.28);background:rgba(0,0,0,.12)}
+    .ornament{display:none}
+    @media(max-width:700px){
+      .hero{flex-direction:column;align-items:stretch;min-height:0;padding-top:28px;padding-bottom:28px}
+      .hero-visual{max-width:100%;flex:0 1 auto}
+      .hero-visual img{max-height:240px;width:auto;max-width:100%;margin:0 auto}
+    }
+    @media(min-width:1100px){
+      .hero-visual{max-width:min(42vw,500px)}
+      .hero-visual img{max-height:min(56vh,460px)}
+    }
+    /* Atlas cards: show the whole 4:3 picture */
+    .card-art{height:auto!important;aspect-ratio:4/3;overflow:hidden}
+    .card-art img,.card-art .card-photo{width:100%;height:100%;object-fit:cover;object-position:center center;display:block}
+    .card-art.has-photo:before,.card-art.has-photo:after,.card-art.has-photo .sigil{display:none}
+
   </style>
 </head>
 <body>
   
   <svg class="svg-defs" aria-hidden="true" focusable="false">
-    <symbol id="gothic-frame" viewBox="0 0 200 230" fill="none" stroke="currentColor" stroke-linejoin="round">
-      <rect x="4" y="4" width="192" height="222" rx="7" stroke-width="2.2"/>
-      <rect x="7" y="7" width="186" height="216" rx="5" stroke-width="0.75"/>
-      <rect x="12" y="32" width="176" height="132" rx="1.2" stroke-width="1.25"/>
-      <path stroke-width="1.55" d="M12 32C28 18 58 8 100 6c42 2 72 12 88 26"/>
-      <path stroke-width="0.9" d="M24 32C40 20 64 11 100 9c36 2 60 11 76 23"/>
-      <path stroke-width="1.05" d="M100 6v10"/>
-      <path stroke-width="0.9" d="M100 6l3.2 6.5-3.2 2.8-3.2-2.8z"/>
-      <path stroke-width="0.9" d="M12 44H8V32h14"/>
-      <path stroke-width="0.9" d="M188 44h4V32h-14"/>
-      <path stroke-width="0.9" d="M12 152H8v12h14"/>
-      <path stroke-width="0.9" d="M188 152h4v12h-14"/>
-      <circle cx="12" cy="32" r="2" stroke-width="0.8"/>
-      <circle cx="188" cy="32" r="2" stroke-width="0.8"/>
-      <circle cx="12" cy="164" r="2" stroke-width="0.8"/>
-      <circle cx="188" cy="164" r="2" stroke-width="0.8"/>
-      <path stroke-width="0.75" d="M7 88v28M193 88v28"/>
+<clipPath id="nouveau-margin" clipPathUnits="userSpaceOnUse">
+      <path d="M0 0 H400 V380 H0 Z M32 52 H368 V304 H32 Z" clip-rule="evenodd"/>
+    </clipPath>
+
+    <symbol id="nouveau-base" viewBox="0 0 400 380" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-linecap="round">
+
+      <rect x="5" y="5" width="390" height="370" rx="20" stroke-width="2.3" fill="none"/>
+      <rect x="10.5" y="10.5" width="379" height="359" rx="16" stroke-width="0.75" fill="none"/>
+      <rect x="32" y="52" width="336" height="252" rx="3.5" stroke-width="1.55" fill="none"/>
+      <rect x="36" y="56" width="328" height="244" rx="2" stroke-width="0.55" fill="none"/>
+      <!-- top crest ring -->
+      <circle cx="200" cy="30" r="20" stroke-width="1.5" fill="none"/>
+      <circle cx="200" cy="30" r="15.5" stroke-width="0.6" fill="none"/>
+      <path d="M181 36 C 160 16, 110 18, 32 52" stroke-width="1.15" fill="none"/>
+      <path d="M219 36 C 240 16, 290 18, 368 52" stroke-width="1.15" fill="none"/>
+      <path d="M181 24 C 170 10, 150 12, 132 18" stroke-width="0.7" fill="none"/>
+      <path d="M219 24 C 230 10, 250 12, 268 18" stroke-width="0.7" fill="none"/>
+      <!-- cream plaque -->
+      <path d="M86 316 C 100 306, 130 308, 150 309 L 250 309 C 270 308, 300 306, 314 316 C 326 324, 326 336, 314 344 C 300 356, 270 352, 250 352 L 150 352 C 130 352, 100 356, 86 344 C 74 336, 74 324, 86 316 Z"
+            stroke-width="1.35" fill="var(--plaque-fill, #f3e6c4)"/>
+      <path d="M96 320 C 110 312, 140 314, 155 315 L 245 315 C 260 314, 290 312, 304 320"
+            stroke-width="0.55" fill="none"/>
+      <!-- small corner jewels on the art window -->
+      <circle cx="32" cy="52" r="2.3" stroke-width="0.8" fill="currentColor" fill-opacity=".35"/>
+      <circle cx="368" cy="52" r="2.3" stroke-width="0.8" fill="currentColor" fill-opacity=".35"/>
+      <circle cx="32" cy="304" r="2.3" stroke-width="0.8" fill="currentColor" fill-opacity=".35"/>
+      <circle cx="368" cy="304" r="2.3" stroke-width="0.8" fill="currentColor" fill-opacity=".35"/>
+
     </symbol>
-    <symbol id="gothic-frame-back" viewBox="0 0 200 230" fill="none" stroke="currentColor" stroke-linejoin="round">
-      <rect x="4" y="4" width="192" height="222" rx="7" stroke-width="2.2"/>
-      <rect x="10" y="10" width="180" height="210" rx="5" stroke-width="1.05"/>
-      <path stroke-width="1.55" d="M10 36C30 18 62 8 100 6c38 2 70 12 90 30"/>
-      <path stroke-width="0.9" d="M100 6v12"/>
-      <path stroke-width="0.9" d="M100 6l3.2 6.5-3.2 2.8-3.2-2.8z"/>
-      <path stroke-width="0.9" d="M10 48H6V36h16M190 48h4V36h-16M10 182H6v12h16M190 182h4v12h-16"/>
-      <circle cx="10" cy="36" r="2" stroke-width="0.8"/>
-      <circle cx="190" cy="36" r="2" stroke-width="0.8"/>
-      <circle cx="10" cy="194" r="2" stroke-width="0.8"/>
-      <circle cx="190" cy="194" r="2" stroke-width="0.8"/>
+    <symbol id="nouveau-base-back" viewBox="0 0 400 380" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-linecap="round">
+
+      <rect x="5" y="5" width="390" height="370" rx="20" stroke-width="2.3" fill="none"/>
+      <rect x="11" y="11" width="378" height="358" rx="16" stroke-width="0.8" fill="none"/>
+      <rect x="28" y="28" width="344" height="324" rx="10" stroke-width="1.2" fill="none"/>
+      <circle cx="200" cy="190" r="54" stroke-width="1.4" fill="none"/>
+      <circle cx="200" cy="190" r="44" stroke-width="0.7" fill="none"/>
+      <path d="M200 8 L200 28 M200 352 L200 372 M8 190 L28 190 M372 190 L392 190" stroke-width="0.7"/>
+
+    </symbol>
+    <symbol id="nouveau-corners-major" viewBox="0 0 400 380" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-linecap="round">
+<g clip-path="url(#nouveau-margin)" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-linecap="round">
+      <!-- celestial -->
+      <path d="M32 52 C 20 40, 16 24, 28 16 C 48 8, 80 14, 120 22" stroke-width="1"/>
+      <path d="M32 52 C 18 58, 14 90, 16 130" stroke-width="0.9"/>
+      <circle cx="70" cy="28" r="4.9" stroke-width="0.9"/>
+      <path d="M78.0,28.0 L82.5,28.0" stroke-width="0.8"/>
+      <path d="M75.7,33.7 L78.8,36.8" stroke-width="0.8"/>
+      <path d="M70.0,36.0 L70.0,40.5" stroke-width="0.8"/>
+      <path d="M64.3,33.7 L61.2,36.8" stroke-width="0.8"/>
+      <path d="M62.0,28.0 L57.5,28.0" stroke-width="0.8"/>
+      <path d="M64.3,22.3 L61.2,19.2" stroke-width="0.8"/>
+      <path d="M70.0,20.0 L70.0,15.5" stroke-width="0.8"/>
+      <path d="M75.7,22.3 L78.8,19.2" stroke-width="0.8"/>
+      <polygon points="100.0,14.8 100.9,17.1 103.2,18.0 100.9,18.9 100.0,21.2 99.1,18.9 96.8,18.0 99.1,17.1" stroke-width="0.8" fill="currentColor" fill-opacity=".25"/>
+      <polygon points="46.0,33.6 46.7,35.3 48.4,36.0 46.7,36.7 46.0,38.4 45.3,36.7 43.6,36.0 45.3,35.3" stroke-width="0.8" fill="currentColor" fill-opacity=".25"/>
+      <path d="M28.0,80.0 A 8.0 8.0 0 1 0 28.0,96.0 A 6.0 6.0 0 1 1 28.0,80.0" stroke-width="1"/>
+      <polygon points="22.0,117.8 22.6,119.4 24.2,120.0 22.6,120.6 22.0,122.2 21.4,120.6 19.8,120.0 21.4,119.4" stroke-width="0.8" fill="currentColor" fill-opacity=".25"/>
+      <!-- TR -->
+      <path d="M368 52 C 380 40, 384 24, 372 16 C 352 8, 320 14, 280 22" stroke-width="1"/>
+      <path d="M368 52 C 382 58, 386 90, 384 130" stroke-width="0.9"/>
+      <path d="M334.2,19.6 A 8.4 8.4 0 1 0 334.2,36.4 A 6.3 6.3 0 1 1 334.2,19.6" stroke-width="1"/>
+      <polygon points="300.0,14.8 300.9,17.1 303.2,18.0 300.9,18.9 300.0,21.2 299.1,18.9 296.8,18.0 299.1,17.1" stroke-width="0.8" fill="currentColor" fill-opacity=".25"/>
+      <polygon points="354.0,33.6 354.7,35.3 356.4,36.0 354.7,36.7 354.0,38.4 353.3,36.7 351.6,36.0 353.3,35.3" stroke-width="0.8" fill="currentColor" fill-opacity=".25"/>
+      <circle cx="376" cy="90" r="3.8" stroke-width="0.9"/>
+      <path d="M382.5,90.0 L387.0,90.0" stroke-width="0.8"/>
+      <path d="M380.6,94.6 L383.8,97.8" stroke-width="0.8"/>
+      <path d="M376.0,96.5 L376.0,101.0" stroke-width="0.8"/>
+      <path d="M371.4,94.6 L368.2,97.8" stroke-width="0.8"/>
+      <path d="M369.5,90.0 L365.0,90.0" stroke-width="0.8"/>
+      <path d="M371.4,85.4 L368.2,82.2" stroke-width="0.8"/>
+      <path d="M376.0,83.5 L376.0,79.0" stroke-width="0.8"/>
+      <path d="M380.6,85.4 L383.8,82.2" stroke-width="0.8"/>
+      <polygon points="378.0,117.8 378.6,119.4 380.2,120.0 378.6,120.6 378.0,122.2 377.4,120.6 375.8,120.0 377.4,119.4" stroke-width="0.8" fill="currentColor" fill-opacity=".25"/>
+      <!-- BL -->
+      <path d="M32 304 C 16 312, 18 348, 40 356 C 70 364, 100 348, 120 346" stroke-width="1"/>
+      <path d="M32 304 C 16 280, 14 250, 16 230" stroke-width="0.9"/>
+      <path d="M51.6,328.8 A 7.2 7.2 0 1 0 51.6,343.2 A 5.4 5.4 0 1 1 51.6,328.8" stroke-width="1"/>
+      <polygon points="88.0,347.0 88.8,349.2 91.0,350.0 88.8,350.8 88.0,353.0 87.2,350.8 85.0,350.0 87.2,349.2" stroke-width="0.8" fill="currentColor" fill-opacity=".25"/>
+      <polygon points="24.0,247.6 24.7,249.3 26.4,250.0 24.7,250.7 24.0,252.4 23.3,250.7 21.6,250.0 23.3,249.3" stroke-width="0.8" fill="currentColor" fill-opacity=".25"/>
+      <circle cx="26" cy="330" r="3.5" stroke-width="0.9"/>
+      <path d="M32.0,330.0 L36.5,330.0" stroke-width="0.8"/>
+      <path d="M30.2,334.2 L33.4,337.4" stroke-width="0.8"/>
+      <path d="M26.0,336.0 L26.0,340.5" stroke-width="0.8"/>
+      <path d="M21.8,334.2 L18.6,337.4" stroke-width="0.8"/>
+      <path d="M20.0,330.0 L15.5,330.0" stroke-width="0.8"/>
+      <path d="M21.8,325.8 L18.6,322.6" stroke-width="0.8"/>
+      <path d="M26.0,324.0 L26.0,319.5" stroke-width="0.8"/>
+      <path d="M30.2,325.8 L33.4,322.6" stroke-width="0.8"/>
+      <!-- BR -->
+      <path d="M368 304 C 384 312, 382 348, 360 356 C 330 364, 300 348, 280 346" stroke-width="1"/>
+      <path d="M368 304 C 384 280, 386 250, 384 230" stroke-width="0.9"/>
+      <circle cx="352" cy="336" r="4.2" stroke-width="0.9"/>
+      <path d="M359.0,336.0 L363.5,336.0" stroke-width="0.8"/>
+      <path d="M356.9,340.9 L360.1,344.1" stroke-width="0.8"/>
+      <path d="M352.0,343.0 L352.0,347.5" stroke-width="0.8"/>
+      <path d="M347.1,340.9 L343.9,344.1" stroke-width="0.8"/>
+      <path d="M345.0,336.0 L340.5,336.0" stroke-width="0.8"/>
+      <path d="M347.1,331.1 L343.9,327.9" stroke-width="0.8"/>
+      <path d="M352.0,329.0 L352.0,324.5" stroke-width="0.8"/>
+      <path d="M356.9,331.1 L360.1,327.9" stroke-width="0.8"/>
+      <polygon points="312.0,347.0 312.8,349.2 315.0,350.0 312.8,350.8 312.0,353.0 311.2,350.8 309.0,350.0 311.2,349.2" stroke-width="0.8" fill="currentColor" fill-opacity=".25"/>
+      <polygon points="376.0,247.6 376.7,249.3 378.4,250.0 376.7,250.7 376.0,252.4 375.3,250.7 373.6,250.0 375.3,249.3" stroke-width="0.8" fill="currentColor" fill-opacity=".25"/>
+      <path d="M377.4,323.2 A 6.8 6.8 0 1 0 377.4,336.8 A 5.1 5.1 0 1 1 377.4,323.2" stroke-width="1"/>
+</g>
+    </symbol>
+    <symbol id="nouveau-corners-wands" viewBox="0 0 400 380" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-linecap="round">
+<g clip-path="url(#nouveau-margin)" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-linecap="round">
+      <path d="M32 52 C 18 36, 24 16, 48 18 C 80 20, 110 28, 130 36" stroke-width="1"/>
+      <path d="M32 52 C 16 70, 14 110, 18 150" stroke-width="0.9"/>
+      <g transform="translate(58,28) rotate(-20) scale(1.15)">
+      <path d="M0 10 C 2 2 1 -2 0 -8" stroke-width="0.9"/>
+      <path d="M0 -2 C -6 -10, 6 -10, 0 -2" transform="rotate(0)" stroke-width="0.85"/>
+      <path d="M0 -2 C -6 -10, 6 -10, 0 -2" transform="rotate(72)" stroke-width="0.85"/>
+      <path d="M0 -2 C -6 -10, 6 -10, 0 -2" transform="rotate(144)" stroke-width="0.85"/>
+      <path d="M0 -2 C -6 -10, 6 -10, 0 -2" transform="rotate(216)" stroke-width="0.85"/>
+      <path d="M0 -2 C -6 -10, 6 -10, 0 -2" transform="rotate(288)" stroke-width="0.85"/>
+      <circle cx="0" cy="-2" r="2.2" stroke-width="0.7" fill="currentColor" fill-opacity=".3"/>
+      </g>
+      <g transform="translate(24,96) rotate(20) scale(0.95)">
+      <path d="M0 10 C 2 2 1 -2 0 -8" stroke-width="0.9"/>
+      <path d="M0 -2 C -6 -10, 6 -10, 0 -2" transform="rotate(0)" stroke-width="0.85"/>
+      <path d="M0 -2 C -6 -10, 6 -10, 0 -2" transform="rotate(72)" stroke-width="0.85"/>
+      <path d="M0 -2 C -6 -10, 6 -10, 0 -2" transform="rotate(144)" stroke-width="0.85"/>
+      <path d="M0 -2 C -6 -10, 6 -10, 0 -2" transform="rotate(216)" stroke-width="0.85"/>
+      <path d="M0 -2 C -6 -10, 6 -10, 0 -2" transform="rotate(288)" stroke-width="0.85"/>
+      <circle cx="0" cy="-2" r="2.2" stroke-width="0.7" fill="currentColor" fill-opacity=".3"/>
+      </g>
+      <path d="M100,32.2 C 101.7,25.4 99.15,23.7 100,22" stroke-width="0.9"/>
+      <path d="M100,27.1 C 91.5,23.7 89.8,16.9 96.6,20.3" stroke-width="0.8"/>
+      <path d="M100,27.1 C 108.5,22.85 110.2,16.05 104.25,20.3" stroke-width="0.8"/>
+      <circle cx="100.0" cy="22.0" r="1.8" stroke-width="0.7" fill="currentColor" fill-opacity=".25"/>
+      <circle cx="105.1" cy="23.7" r="1.8" stroke-width="0.7" fill="currentColor" fill-opacity=".25"/>
+      <circle cx="102.5" cy="27.1" r="1.8" stroke-width="0.7" fill="currentColor" fill-opacity=".25"/>
+      <circle cx="97.5" cy="26.2" r="1.8" stroke-width="0.7" fill="currentColor" fill-opacity=".25"/>
+      <circle cx="95.8" cy="22.9" r="1.8" stroke-width="0.7" fill="currentColor" fill-opacity=".25"/>
+      <circle cx="100.8" cy="17.8" r="1.8" stroke-width="0.7" fill="currentColor" fill-opacity=".25"/>
+      <circle cx="104.2" cy="19.4" r="1.8" stroke-width="0.7" fill="currentColor" fill-opacity=".25"/>
+      <path d="M368 52 C 382 36, 376 16, 352 18 C 320 20, 290 28, 270 36" stroke-width="1"/>
+      <path d="M368 52 C 384 70, 386 110, 382 150" stroke-width="0.9"/>
+      <g transform="translate(342,28) rotate(20) scale(1.15)">
+      <path d="M0 10 C 2 2 1 -2 0 -8" stroke-width="0.9"/>
+      <path d="M0 -2 C -6 -10, 6 -10, 0 -2" transform="rotate(0)" stroke-width="0.85"/>
+      <path d="M0 -2 C -6 -10, 6 -10, 0 -2" transform="rotate(72)" stroke-width="0.85"/>
+      <path d="M0 -2 C -6 -10, 6 -10, 0 -2" transform="rotate(144)" stroke-width="0.85"/>
+      <path d="M0 -2 C -6 -10, 6 -10, 0 -2" transform="rotate(216)" stroke-width="0.85"/>
+      <path d="M0 -2 C -6 -10, 6 -10, 0 -2" transform="rotate(288)" stroke-width="0.85"/>
+      <circle cx="0" cy="-2" r="2.2" stroke-width="0.7" fill="currentColor" fill-opacity=".3"/>
+      </g>
+      <g transform="translate(376,96) rotate(-20) scale(0.95)">
+      <path d="M0 10 C 2 2 1 -2 0 -8" stroke-width="0.9"/>
+      <path d="M0 -2 C -6 -10, 6 -10, 0 -2" transform="rotate(0)" stroke-width="0.85"/>
+      <path d="M0 -2 C -6 -10, 6 -10, 0 -2" transform="rotate(72)" stroke-width="0.85"/>
+      <path d="M0 -2 C -6 -10, 6 -10, 0 -2" transform="rotate(144)" stroke-width="0.85"/>
+      <path d="M0 -2 C -6 -10, 6 -10, 0 -2" transform="rotate(216)" stroke-width="0.85"/>
+      <path d="M0 -2 C -6 -10, 6 -10, 0 -2" transform="rotate(288)" stroke-width="0.85"/>
+      <circle cx="0" cy="-2" r="2.2" stroke-width="0.7" fill="currentColor" fill-opacity=".3"/>
+      </g>
+      <path d="M300,32.2 C 301.7,25.4 299.15,23.7 300,22" stroke-width="0.9"/>
+      <path d="M300,27.1 C 291.5,23.7 289.8,16.9 296.6,20.3" stroke-width="0.8"/>
+      <path d="M300,27.1 C 308.5,22.85 310.2,16.05 304.25,20.3" stroke-width="0.8"/>
+      <circle cx="300.0" cy="22.0" r="1.8" stroke-width="0.7" fill="currentColor" fill-opacity=".25"/>
+      <circle cx="305.1" cy="23.7" r="1.8" stroke-width="0.7" fill="currentColor" fill-opacity=".25"/>
+      <circle cx="302.6" cy="27.1" r="1.8" stroke-width="0.7" fill="currentColor" fill-opacity=".25"/>
+      <circle cx="297.4" cy="26.2" r="1.8" stroke-width="0.7" fill="currentColor" fill-opacity=".25"/>
+      <circle cx="295.8" cy="22.9" r="1.8" stroke-width="0.7" fill="currentColor" fill-opacity=".25"/>
+      <circle cx="300.9" cy="17.8" r="1.8" stroke-width="0.7" fill="currentColor" fill-opacity=".25"/>
+      <circle cx="304.2" cy="19.4" r="1.8" stroke-width="0.7" fill="currentColor" fill-opacity=".25"/>
+      <path d="M32 304 C 16 320, 22 350, 54 354 C 90 358, 120 346, 140 344" stroke-width="1"/>
+      <g transform="translate(56,338) rotate(200) scale(1.05)">
+      <path d="M0 10 C 2 2 1 -2 0 -8" stroke-width="0.9"/>
+      <path d="M0 -2 C -6 -10, 6 -10, 0 -2" transform="rotate(0)" stroke-width="0.85"/>
+      <path d="M0 -2 C -6 -10, 6 -10, 0 -2" transform="rotate(72)" stroke-width="0.85"/>
+      <path d="M0 -2 C -6 -10, 6 -10, 0 -2" transform="rotate(144)" stroke-width="0.85"/>
+      <path d="M0 -2 C -6 -10, 6 -10, 0 -2" transform="rotate(216)" stroke-width="0.85"/>
+      <path d="M0 -2 C -6 -10, 6 -10, 0 -2" transform="rotate(288)" stroke-width="0.85"/>
+      <circle cx="0" cy="-2" r="2.2" stroke-width="0.7" fill="currentColor" fill-opacity=".3"/>
+      </g>
+      <g transform="translate(24,260) rotate(160) scale(0.9)">
+      <path d="M0 10 C 2 2 1 -2 0 -8" stroke-width="0.9"/>
+      <path d="M0 -2 C -6 -10, 6 -10, 0 -2" transform="rotate(0)" stroke-width="0.85"/>
+      <path d="M0 -2 C -6 -10, 6 -10, 0 -2" transform="rotate(72)" stroke-width="0.85"/>
+      <path d="M0 -2 C -6 -10, 6 -10, 0 -2" transform="rotate(144)" stroke-width="0.85"/>
+      <path d="M0 -2 C -6 -10, 6 -10, 0 -2" transform="rotate(216)" stroke-width="0.85"/>
+      <path d="M0 -2 C -6 -10, 6 -10, 0 -2" transform="rotate(288)" stroke-width="0.85"/>
+      <circle cx="0" cy="-2" r="2.2" stroke-width="0.7" fill="currentColor" fill-opacity=".3"/>
+      </g>
+      <path d="M100,357.6 C 101.6,351.2 99.2,349.6 100,348" stroke-width="0.9"/>
+      <path d="M100,352.8 C 92.0,349.6 90.4,343.2 96.8,346.4" stroke-width="0.8"/>
+      <path d="M100,352.8 C 108.0,348.8 109.6,342.4 104.0,346.4" stroke-width="0.8"/>
+      <circle cx="100.0" cy="348.0" r="1.7" stroke-width="0.7" fill="currentColor" fill-opacity=".25"/>
+      <circle cx="104.8" cy="349.6" r="1.7" stroke-width="0.7" fill="currentColor" fill-opacity=".25"/>
+      <circle cx="102.4" cy="352.8" r="1.7" stroke-width="0.7" fill="currentColor" fill-opacity=".25"/>
+      <circle cx="97.6" cy="352.0" r="1.7" stroke-width="0.7" fill="currentColor" fill-opacity=".25"/>
+      <circle cx="96.0" cy="348.8" r="1.7" stroke-width="0.7" fill="currentColor" fill-opacity=".25"/>
+      <circle cx="100.8" cy="344.0" r="1.7" stroke-width="0.7" fill="currentColor" fill-opacity=".25"/>
+      <circle cx="104.0" cy="345.6" r="1.7" stroke-width="0.7" fill="currentColor" fill-opacity=".25"/>
+      <path d="M368 304 C 384 320, 378 350, 346 354 C 310 358, 280 346, 260 344" stroke-width="1"/>
+      <g transform="translate(344,338) rotate(-200) scale(1.05)">
+      <path d="M0 10 C 2 2 1 -2 0 -8" stroke-width="0.9"/>
+      <path d="M0 -2 C -6 -10, 6 -10, 0 -2" transform="rotate(0)" stroke-width="0.85"/>
+      <path d="M0 -2 C -6 -10, 6 -10, 0 -2" transform="rotate(72)" stroke-width="0.85"/>
+      <path d="M0 -2 C -6 -10, 6 -10, 0 -2" transform="rotate(144)" stroke-width="0.85"/>
+      <path d="M0 -2 C -6 -10, 6 -10, 0 -2" transform="rotate(216)" stroke-width="0.85"/>
+      <path d="M0 -2 C -6 -10, 6 -10, 0 -2" transform="rotate(288)" stroke-width="0.85"/>
+      <circle cx="0" cy="-2" r="2.2" stroke-width="0.7" fill="currentColor" fill-opacity=".3"/>
+      </g>
+      <g transform="translate(376,260) rotate(-160) scale(0.9)">
+      <path d="M0 10 C 2 2 1 -2 0 -8" stroke-width="0.9"/>
+      <path d="M0 -2 C -6 -10, 6 -10, 0 -2" transform="rotate(0)" stroke-width="0.85"/>
+      <path d="M0 -2 C -6 -10, 6 -10, 0 -2" transform="rotate(72)" stroke-width="0.85"/>
+      <path d="M0 -2 C -6 -10, 6 -10, 0 -2" transform="rotate(144)" stroke-width="0.85"/>
+      <path d="M0 -2 C -6 -10, 6 -10, 0 -2" transform="rotate(216)" stroke-width="0.85"/>
+      <path d="M0 -2 C -6 -10, 6 -10, 0 -2" transform="rotate(288)" stroke-width="0.85"/>
+      <circle cx="0" cy="-2" r="2.2" stroke-width="0.7" fill="currentColor" fill-opacity=".3"/>
+      </g>
+      <path d="M300,357.6 C 301.6,351.2 299.2,349.6 300,348" stroke-width="0.9"/>
+      <path d="M300,352.8 C 292.0,349.6 290.4,343.2 296.8,346.4" stroke-width="0.8"/>
+      <path d="M300,352.8 C 308.0,348.8 309.6,342.4 304.0,346.4" stroke-width="0.8"/>
+      <circle cx="300.0" cy="348.0" r="1.7" stroke-width="0.7" fill="currentColor" fill-opacity=".25"/>
+      <circle cx="304.8" cy="349.6" r="1.7" stroke-width="0.7" fill="currentColor" fill-opacity=".25"/>
+      <circle cx="302.4" cy="352.8" r="1.7" stroke-width="0.7" fill="currentColor" fill-opacity=".25"/>
+      <circle cx="297.6" cy="352.0" r="1.7" stroke-width="0.7" fill="currentColor" fill-opacity=".25"/>
+      <circle cx="296.0" cy="348.8" r="1.7" stroke-width="0.7" fill="currentColor" fill-opacity=".25"/>
+      <circle cx="300.8" cy="344.0" r="1.7" stroke-width="0.7" fill="currentColor" fill-opacity=".25"/>
+      <circle cx="304.0" cy="345.6" r="1.7" stroke-width="0.7" fill="currentColor" fill-opacity=".25"/>
+</g>
+    </symbol>
+    <symbol id="nouveau-corners-cups" viewBox="0 0 400 380" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-linecap="round">
+<g clip-path="url(#nouveau-margin)" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-linecap="round">
+      <path d="M32 52 C 20 30, 40 12, 70 20 C 100 28, 130 24, 150 30" stroke-width="1"/>
+      <path d="M32 52 C 16 80, 18 120, 20 155" stroke-width="0.9"/>
+      <g transform="translate(60,30) rotate(-10) scale(1.1)">
+      <path d="M0 12 C 1 4 0 -2 0 -10" stroke-width="0.9"/>
+      <path d="M0 2 C -4 -8, 0 -16, 0 -16 C 0 -16, 4 -8, 0 2" transform="rotate(-40)" stroke-width="0.8"/>
+      <path d="M0 2 C -4 -8, 0 -16, 0 -16 C 0 -16, 4 -8, 0 2" transform="rotate(-20)" stroke-width="0.8"/>
+      <path d="M0 2 C -4 -8, 0 -16, 0 -16 C 0 -16, 4 -8, 0 2" transform="rotate(0)" stroke-width="0.8"/>
+      <path d="M0 2 C -4 -8, 0 -16, 0 -16 C 0 -16, 4 -8, 0 2" transform="rotate(20)" stroke-width="0.8"/>
+      <path d="M0 2 C -4 -8, 0 -16, 0 -16 C 0 -16, 4 -8, 0 2" transform="rotate(40)" stroke-width="0.8"/>
+      </g>
+      <g transform="translate(100,20) scale(1.1)">
+      <path d="M0 0 C -3 -5, 3 -5, 0 0" transform="rotate(0)" stroke-width="0.85"/>
+      <path d="M0 0 C -3 -5, 3 -5, 0 0" transform="rotate(72)" stroke-width="0.85"/>
+      <path d="M0 0 C -3 -5, 3 -5, 0 0" transform="rotate(144)" stroke-width="0.85"/>
+      <path d="M0 0 C -3 -5, 3 -5, 0 0" transform="rotate(216)" stroke-width="0.85"/>
+      <path d="M0 0 C -3 -5, 3 -5, 0 0" transform="rotate(288)" stroke-width="0.85"/>
+      <circle r="1.4" stroke-width="0.6" fill="currentColor" fill-opacity=".3"/>
+      </g>
+      <g transform="translate(26,100) rotate(25) scale(0.95)">
+      <path d="M0 12 C 1 4 0 -2 0 -10" stroke-width="0.9"/>
+      <path d="M0 2 C -4 -8, 0 -16, 0 -16 C 0 -16, 4 -8, 0 2" transform="rotate(-40)" stroke-width="0.8"/>
+      <path d="M0 2 C -4 -8, 0 -16, 0 -16 C 0 -16, 4 -8, 0 2" transform="rotate(-20)" stroke-width="0.8"/>
+      <path d="M0 2 C -4 -8, 0 -16, 0 -16 C 0 -16, 4 -8, 0 2" transform="rotate(0)" stroke-width="0.8"/>
+      <path d="M0 2 C -4 -8, 0 -16, 0 -16 C 0 -16, 4 -8, 0 2" transform="rotate(20)" stroke-width="0.8"/>
+      <path d="M0 2 C -4 -8, 0 -16, 0 -16 C 0 -16, 4 -8, 0 2" transform="rotate(40)" stroke-width="0.8"/>
+      </g>
+      <path d="M368 52 C 380 30, 360 12, 330 20 C 300 28, 270 24, 250 30" stroke-width="1"/>
+      <path d="M368 52 C 384 80, 382 120, 380 155" stroke-width="0.9"/>
+      <g transform="translate(340,30) rotate(10) scale(1.1)">
+      <path d="M0 12 C 1 4 0 -2 0 -10" stroke-width="0.9"/>
+      <path d="M0 2 C -4 -8, 0 -16, 0 -16 C 0 -16, 4 -8, 0 2" transform="rotate(-40)" stroke-width="0.8"/>
+      <path d="M0 2 C -4 -8, 0 -16, 0 -16 C 0 -16, 4 -8, 0 2" transform="rotate(-20)" stroke-width="0.8"/>
+      <path d="M0 2 C -4 -8, 0 -16, 0 -16 C 0 -16, 4 -8, 0 2" transform="rotate(0)" stroke-width="0.8"/>
+      <path d="M0 2 C -4 -8, 0 -16, 0 -16 C 0 -16, 4 -8, 0 2" transform="rotate(20)" stroke-width="0.8"/>
+      <path d="M0 2 C -4 -8, 0 -16, 0 -16 C 0 -16, 4 -8, 0 2" transform="rotate(40)" stroke-width="0.8"/>
+      </g>
+      <g transform="translate(300,20) scale(1.1)">
+      <path d="M0 0 C -3 -5, 3 -5, 0 0" transform="rotate(0)" stroke-width="0.85"/>
+      <path d="M0 0 C -3 -5, 3 -5, 0 0" transform="rotate(72)" stroke-width="0.85"/>
+      <path d="M0 0 C -3 -5, 3 -5, 0 0" transform="rotate(144)" stroke-width="0.85"/>
+      <path d="M0 0 C -3 -5, 3 -5, 0 0" transform="rotate(216)" stroke-width="0.85"/>
+      <path d="M0 0 C -3 -5, 3 -5, 0 0" transform="rotate(288)" stroke-width="0.85"/>
+      <circle r="1.4" stroke-width="0.6" fill="currentColor" fill-opacity=".3"/>
+      </g>
+      <g transform="translate(374,100) rotate(-25) scale(0.95)">
+      <path d="M0 12 C 1 4 0 -2 0 -10" stroke-width="0.9"/>
+      <path d="M0 2 C -4 -8, 0 -16, 0 -16 C 0 -16, 4 -8, 0 2" transform="rotate(-40)" stroke-width="0.8"/>
+      <path d="M0 2 C -4 -8, 0 -16, 0 -16 C 0 -16, 4 -8, 0 2" transform="rotate(-20)" stroke-width="0.8"/>
+      <path d="M0 2 C -4 -8, 0 -16, 0 -16 C 0 -16, 4 -8, 0 2" transform="rotate(0)" stroke-width="0.8"/>
+      <path d="M0 2 C -4 -8, 0 -16, 0 -16 C 0 -16, 4 -8, 0 2" transform="rotate(20)" stroke-width="0.8"/>
+      <path d="M0 2 C -4 -8, 0 -16, 0 -16 C 0 -16, 4 -8, 0 2" transform="rotate(40)" stroke-width="0.8"/>
+      </g>
+      <path d="M32 304 C 16 324, 30 354, 70 352 C 110 350, 140 344, 155 344" stroke-width="1"/>
+      <g transform="translate(60,340) rotate(190) scale(1)">
+      <path d="M0 12 C 1 4 0 -2 0 -10" stroke-width="0.9"/>
+      <path d="M0 2 C -4 -8, 0 -16, 0 -16 C 0 -16, 4 -8, 0 2" transform="rotate(-40)" stroke-width="0.8"/>
+      <path d="M0 2 C -4 -8, 0 -16, 0 -16 C 0 -16, 4 -8, 0 2" transform="rotate(-20)" stroke-width="0.8"/>
+      <path d="M0 2 C -4 -8, 0 -16, 0 -16 C 0 -16, 4 -8, 0 2" transform="rotate(0)" stroke-width="0.8"/>
+      <path d="M0 2 C -4 -8, 0 -16, 0 -16 C 0 -16, 4 -8, 0 2" transform="rotate(20)" stroke-width="0.8"/>
+      <path d="M0 2 C -4 -8, 0 -16, 0 -16 C 0 -16, 4 -8, 0 2" transform="rotate(40)" stroke-width="0.8"/>
+      </g>
+      <g transform="translate(104,348) scale(1)">
+      <path d="M0 0 C -3 -5, 3 -5, 0 0" transform="rotate(0)" stroke-width="0.85"/>
+      <path d="M0 0 C -3 -5, 3 -5, 0 0" transform="rotate(72)" stroke-width="0.85"/>
+      <path d="M0 0 C -3 -5, 3 -5, 0 0" transform="rotate(144)" stroke-width="0.85"/>
+      <path d="M0 0 C -3 -5, 3 -5, 0 0" transform="rotate(216)" stroke-width="0.85"/>
+      <path d="M0 0 C -3 -5, 3 -5, 0 0" transform="rotate(288)" stroke-width="0.85"/>
+      <circle r="1.4" stroke-width="0.6" fill="currentColor" fill-opacity=".3"/>
+      </g>
+      <g transform="translate(24,250) rotate(150) scale(0.9)">
+      <path d="M0 12 C 1 4 0 -2 0 -10" stroke-width="0.9"/>
+      <path d="M0 2 C -4 -8, 0 -16, 0 -16 C 0 -16, 4 -8, 0 2" transform="rotate(-40)" stroke-width="0.8"/>
+      <path d="M0 2 C -4 -8, 0 -16, 0 -16 C 0 -16, 4 -8, 0 2" transform="rotate(-20)" stroke-width="0.8"/>
+      <path d="M0 2 C -4 -8, 0 -16, 0 -16 C 0 -16, 4 -8, 0 2" transform="rotate(0)" stroke-width="0.8"/>
+      <path d="M0 2 C -4 -8, 0 -16, 0 -16 C 0 -16, 4 -8, 0 2" transform="rotate(20)" stroke-width="0.8"/>
+      <path d="M0 2 C -4 -8, 0 -16, 0 -16 C 0 -16, 4 -8, 0 2" transform="rotate(40)" stroke-width="0.8"/>
+      </g>
+      <path d="M368 304 C 384 324, 370 354, 330 352 C 290 350, 260 344, 245 344" stroke-width="1"/>
+      <g transform="translate(340,340) rotate(-190) scale(1)">
+      <path d="M0 12 C 1 4 0 -2 0 -10" stroke-width="0.9"/>
+      <path d="M0 2 C -4 -8, 0 -16, 0 -16 C 0 -16, 4 -8, 0 2" transform="rotate(-40)" stroke-width="0.8"/>
+      <path d="M0 2 C -4 -8, 0 -16, 0 -16 C 0 -16, 4 -8, 0 2" transform="rotate(-20)" stroke-width="0.8"/>
+      <path d="M0 2 C -4 -8, 0 -16, 0 -16 C 0 -16, 4 -8, 0 2" transform="rotate(0)" stroke-width="0.8"/>
+      <path d="M0 2 C -4 -8, 0 -16, 0 -16 C 0 -16, 4 -8, 0 2" transform="rotate(20)" stroke-width="0.8"/>
+      <path d="M0 2 C -4 -8, 0 -16, 0 -16 C 0 -16, 4 -8, 0 2" transform="rotate(40)" stroke-width="0.8"/>
+      </g>
+      <g transform="translate(296,348) scale(1)">
+      <path d="M0 0 C -3 -5, 3 -5, 0 0" transform="rotate(0)" stroke-width="0.85"/>
+      <path d="M0 0 C -3 -5, 3 -5, 0 0" transform="rotate(72)" stroke-width="0.85"/>
+      <path d="M0 0 C -3 -5, 3 -5, 0 0" transform="rotate(144)" stroke-width="0.85"/>
+      <path d="M0 0 C -3 -5, 3 -5, 0 0" transform="rotate(216)" stroke-width="0.85"/>
+      <path d="M0 0 C -3 -5, 3 -5, 0 0" transform="rotate(288)" stroke-width="0.85"/>
+      <circle r="1.4" stroke-width="0.6" fill="currentColor" fill-opacity=".3"/>
+      </g>
+      <g transform="translate(376,250) rotate(-150) scale(0.9)">
+      <path d="M0 12 C 1 4 0 -2 0 -10" stroke-width="0.9"/>
+      <path d="M0 2 C -4 -8, 0 -16, 0 -16 C 0 -16, 4 -8, 0 2" transform="rotate(-40)" stroke-width="0.8"/>
+      <path d="M0 2 C -4 -8, 0 -16, 0 -16 C 0 -16, 4 -8, 0 2" transform="rotate(-20)" stroke-width="0.8"/>
+      <path d="M0 2 C -4 -8, 0 -16, 0 -16 C 0 -16, 4 -8, 0 2" transform="rotate(0)" stroke-width="0.8"/>
+      <path d="M0 2 C -4 -8, 0 -16, 0 -16 C 0 -16, 4 -8, 0 2" transform="rotate(20)" stroke-width="0.8"/>
+      <path d="M0 2 C -4 -8, 0 -16, 0 -16 C 0 -16, 4 -8, 0 2" transform="rotate(40)" stroke-width="0.8"/>
+      </g>
+</g>
+    </symbol>
+    <symbol id="nouveau-corners-swords" viewBox="0 0 400 380" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-linecap="round">
+<g clip-path="url(#nouveau-margin)" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-linecap="round">
+      <path d="M32 52 C 16 34, 28 14, 56 20 C 90 26, 120 22, 145 28" stroke-width="1"/>
+      <path d="M32 52 C 16 80, 14 120, 18 158" stroke-width="0.9"/>
+      <g transform="translate(58,32) rotate(-35) scale(1.15)">
+      <path d="M0 16 C 0 8 -2 8 -6 10 C -10 6 -8 2 -4 2 C -8 -2 -4 -6 0 -4 C 2 -10 8 -8 6 -2 C 12 -4 12 2 7 3 C 12 6 8 12 2 8 C 2 12 0 16 0 16" stroke-width="0.9"/>
+      <path d="M0 16 L0 -2" stroke-width="0.7"/>
+    </g>
+      <g transform="translate(24,100) rotate(10) scale(1)">
+      <path d="M0 10 C 0 4 0 2 0 0" stroke-width="0.9"/>
+      <path d="M0 0 L -1.9 -12" transform="rotate(-70)" stroke-width="0.7"/><path d="M0 0 L -1.7 -12" transform="rotate(-56)" stroke-width="0.7"/><path d="M0 0 L -1.5 -12" transform="rotate(-42)" stroke-width="0.7"/><path d="M0 0 L -1.4 -12" transform="rotate(-28)" stroke-width="0.7"/><path d="M0 0 L -1.2 -12" transform="rotate(-14)" stroke-width="0.7"/><path d="M0 0 L -1.0 -12" transform="rotate(0)" stroke-width="0.7"/><path d="M0 0 L -0.8 -12" transform="rotate(14)" stroke-width="0.7"/><path d="M0 0 L -0.7 -12" transform="rotate(28)" stroke-width="0.7"/><path d="M0 0 L -0.5 -12" transform="rotate(42)" stroke-width="0.7"/><path d="M0 0 L -0.3 -12" transform="rotate(56)" stroke-width="0.7"/><path d="M0 0 L -0.1 -12" transform="rotate(70)" stroke-width="0.7"/>
+      <circle r="1.6" stroke-width="0.6"/>
+    </g>
+      <g transform="translate(22,140) rotate(40) scale(0.9)">
+      <path d="M0 16 C 0 8 -2 8 -6 10 C -10 6 -8 2 -4 2 C -8 -2 -4 -6 0 -4 C 2 -10 8 -8 6 -2 C 12 -4 12 2 7 3 C 12 6 8 12 2 8 C 2 12 0 16 0 16" stroke-width="0.9"/>
+      <path d="M0 16 L0 -2" stroke-width="0.7"/>
+    </g>
+      <path d="M368 52 C 384 34, 372 14, 344 20 C 310 26, 280 22, 255 28" stroke-width="1"/>
+      <path d="M368 52 C 384 80, 386 120, 382 158" stroke-width="0.9"/>
+      <g transform="translate(342,32) rotate(35) scale(1.15)">
+      <path d="M0 16 C 0 8 -2 8 -6 10 C -10 6 -8 2 -4 2 C -8 -2 -4 -6 0 -4 C 2 -10 8 -8 6 -2 C 12 -4 12 2 7 3 C 12 6 8 12 2 8 C 2 12 0 16 0 16" stroke-width="0.9"/>
+      <path d="M0 16 L0 -2" stroke-width="0.7"/>
+    </g>
+      <g transform="translate(376,100) rotate(-10) scale(1)">
+      <path d="M0 10 C 0 4 0 2 0 0" stroke-width="0.9"/>
+      <path d="M0 0 L -1.9 -12" transform="rotate(-70)" stroke-width="0.7"/><path d="M0 0 L -1.7 -12" transform="rotate(-56)" stroke-width="0.7"/><path d="M0 0 L -1.5 -12" transform="rotate(-42)" stroke-width="0.7"/><path d="M0 0 L -1.4 -12" transform="rotate(-28)" stroke-width="0.7"/><path d="M0 0 L -1.2 -12" transform="rotate(-14)" stroke-width="0.7"/><path d="M0 0 L -1.0 -12" transform="rotate(0)" stroke-width="0.7"/><path d="M0 0 L -0.8 -12" transform="rotate(14)" stroke-width="0.7"/><path d="M0 0 L -0.7 -12" transform="rotate(28)" stroke-width="0.7"/><path d="M0 0 L -0.5 -12" transform="rotate(42)" stroke-width="0.7"/><path d="M0 0 L -0.3 -12" transform="rotate(56)" stroke-width="0.7"/><path d="M0 0 L -0.1 -12" transform="rotate(70)" stroke-width="0.7"/>
+      <circle r="1.6" stroke-width="0.6"/>
+    </g>
+      <g transform="translate(378,140) rotate(-40) scale(0.9)">
+      <path d="M0 16 C 0 8 -2 8 -6 10 C -10 6 -8 2 -4 2 C -8 -2 -4 -6 0 -4 C 2 -10 8 -8 6 -2 C 12 -4 12 2 7 3 C 12 6 8 12 2 8 C 2 12 0 16 0 16" stroke-width="0.9"/>
+      <path d="M0 16 L0 -2" stroke-width="0.7"/>
+    </g>
+      <path d="M32 304 C 14 322, 24 352, 60 354 C 100 356, 130 346, 150 344" stroke-width="1"/>
+      <g transform="translate(58,338) rotate(150) scale(1.1)">
+      <path d="M0 16 C 0 8 -2 8 -6 10 C -10 6 -8 2 -4 2 C -8 -2 -4 -6 0 -4 C 2 -10 8 -8 6 -2 C 12 -4 12 2 7 3 C 12 6 8 12 2 8 C 2 12 0 16 0 16" stroke-width="0.9"/>
+      <path d="M0 16 L0 -2" stroke-width="0.7"/>
+    </g>
+      <g transform="translate(100,348) rotate(180) scale(0.95)">
+      <path d="M0 10 C 0 4 0 2 0 0" stroke-width="0.9"/>
+      <path d="M0 0 L -1.9 -12" transform="rotate(-70)" stroke-width="0.7"/><path d="M0 0 L -1.7 -12" transform="rotate(-56)" stroke-width="0.7"/><path d="M0 0 L -1.5 -12" transform="rotate(-42)" stroke-width="0.7"/><path d="M0 0 L -1.4 -12" transform="rotate(-28)" stroke-width="0.7"/><path d="M0 0 L -1.2 -12" transform="rotate(-14)" stroke-width="0.7"/><path d="M0 0 L -1.0 -12" transform="rotate(0)" stroke-width="0.7"/><path d="M0 0 L -0.8 -12" transform="rotate(14)" stroke-width="0.7"/><path d="M0 0 L -0.7 -12" transform="rotate(28)" stroke-width="0.7"/><path d="M0 0 L -0.5 -12" transform="rotate(42)" stroke-width="0.7"/><path d="M0 0 L -0.3 -12" transform="rotate(56)" stroke-width="0.7"/><path d="M0 0 L -0.1 -12" transform="rotate(70)" stroke-width="0.7"/>
+      <circle r="1.6" stroke-width="0.6"/>
+    </g>
+      <g transform="translate(22,250) rotate(130) scale(0.9)">
+      <path d="M0 16 C 0 8 -2 8 -6 10 C -10 6 -8 2 -4 2 C -8 -2 -4 -6 0 -4 C 2 -10 8 -8 6 -2 C 12 -4 12 2 7 3 C 12 6 8 12 2 8 C 2 12 0 16 0 16" stroke-width="0.9"/>
+      <path d="M0 16 L0 -2" stroke-width="0.7"/>
+    </g>
+      <path d="M368 304 C 386 322, 376 352, 340 354 C 300 356, 270 346, 250 344" stroke-width="1"/>
+      <g transform="translate(342,338) rotate(-150) scale(1.1)">
+      <path d="M0 16 C 0 8 -2 8 -6 10 C -10 6 -8 2 -4 2 C -8 -2 -4 -6 0 -4 C 2 -10 8 -8 6 -2 C 12 -4 12 2 7 3 C 12 6 8 12 2 8 C 2 12 0 16 0 16" stroke-width="0.9"/>
+      <path d="M0 16 L0 -2" stroke-width="0.7"/>
+    </g>
+      <g transform="translate(300,348) rotate(180) scale(0.95)">
+      <path d="M0 10 C 0 4 0 2 0 0" stroke-width="0.9"/>
+      <path d="M0 0 L -1.9 -12" transform="rotate(-70)" stroke-width="0.7"/><path d="M0 0 L -1.7 -12" transform="rotate(-56)" stroke-width="0.7"/><path d="M0 0 L -1.5 -12" transform="rotate(-42)" stroke-width="0.7"/><path d="M0 0 L -1.4 -12" transform="rotate(-28)" stroke-width="0.7"/><path d="M0 0 L -1.2 -12" transform="rotate(-14)" stroke-width="0.7"/><path d="M0 0 L -1.0 -12" transform="rotate(0)" stroke-width="0.7"/><path d="M0 0 L -0.8 -12" transform="rotate(14)" stroke-width="0.7"/><path d="M0 0 L -0.7 -12" transform="rotate(28)" stroke-width="0.7"/><path d="M0 0 L -0.5 -12" transform="rotate(42)" stroke-width="0.7"/><path d="M0 0 L -0.3 -12" transform="rotate(56)" stroke-width="0.7"/><path d="M0 0 L -0.1 -12" transform="rotate(70)" stroke-width="0.7"/>
+      <circle r="1.6" stroke-width="0.6"/>
+    </g>
+      <g transform="translate(378,250) rotate(-130) scale(0.9)">
+      <path d="M0 16 C 0 8 -2 8 -6 10 C -10 6 -8 2 -4 2 C -8 -2 -4 -6 0 -4 C 2 -10 8 -8 6 -2 C 12 -4 12 2 7 3 C 12 6 8 12 2 8 C 2 12 0 16 0 16" stroke-width="0.9"/>
+      <path d="M0 16 L0 -2" stroke-width="0.7"/>
+    </g>
+</g>
+    </symbol>
+    <symbol id="nouveau-corners-pentacles" viewBox="0 0 400 380" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-linecap="round">
+<g clip-path="url(#nouveau-margin)" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-linecap="round">
+      <path d="M32 52 C 18 34, 30 14, 58 18 C 92 24, 124 26, 150 32" stroke-width="1"/>
+      <path d="M32 52 C 16 78, 14 118, 18 156" stroke-width="0.9"/>
+      <g transform="translate(50,40) rotate(-25) scale(1.15)">
+      <path d="M0 16 L0 -22" stroke-width="0.85"/>
+      <ellipse cx="2.2" cy="0.0" rx="3.1" ry="1.5" transform="rotate(-30 2.2 0.0)" stroke-width="0.7"/><ellipse cx="-2.2" cy="-3.2" rx="3.1" ry="1.5" transform="rotate(30 -2.2 -3.2)" stroke-width="0.7"/><ellipse cx="2.2" cy="-6.4" rx="3.1" ry="1.5" transform="rotate(-30 2.2 -6.4)" stroke-width="0.7"/><ellipse cx="-2.2" cy="-9.6" rx="3.1" ry="1.5" transform="rotate(30 -2.2 -9.6)" stroke-width="0.7"/><ellipse cx="2.2" cy="-12.8" rx="3.1" ry="1.5" transform="rotate(-30 2.2 -12.8)" stroke-width="0.7"/><ellipse cx="-2.2" cy="-16.0" rx="3.1" ry="1.5" transform="rotate(30 -2.2 -16.0)" stroke-width="0.7"/><ellipse cx="2.2" cy="-19.2" rx="3.1" ry="1.5" transform="rotate(-30 2.2 -19.2)" stroke-width="0.7"/>
+    </g>
+      <circle cx="100.0" cy="24.0" r="3.6" stroke-width="0.9" fill="currentColor" fill-opacity=".35"/>
+      <ellipse cx="107.5" cy="24.0" rx="4.2" ry="1.9" transform="rotate(0.0 107.5 24.0)" stroke-width="0.8"/>
+      <ellipse cx="106.5" cy="27.8" rx="4.2" ry="1.9" transform="rotate(30.0 106.5 27.8)" stroke-width="0.8"/>
+      <ellipse cx="103.8" cy="30.5" rx="4.2" ry="1.9" transform="rotate(60.0 103.8 30.5)" stroke-width="0.8"/>
+      <ellipse cx="100.0" cy="31.5" rx="4.2" ry="1.9" transform="rotate(90.0 100.0 31.5)" stroke-width="0.8"/>
+      <ellipse cx="96.2" cy="30.5" rx="4.2" ry="1.9" transform="rotate(120.0 96.2 30.5)" stroke-width="0.8"/>
+      <ellipse cx="93.5" cy="27.8" rx="4.2" ry="1.9" transform="rotate(150.0 93.5 27.8)" stroke-width="0.8"/>
+      <ellipse cx="92.5" cy="24.0" rx="4.2" ry="1.9" transform="rotate(180.0 92.5 24.0)" stroke-width="0.8"/>
+      <ellipse cx="93.5" cy="20.3" rx="4.2" ry="1.9" transform="rotate(210.0 93.5 20.3)" stroke-width="0.8"/>
+      <ellipse cx="96.2" cy="17.5" rx="4.2" ry="1.9" transform="rotate(240.0 96.2 17.5)" stroke-width="0.8"/>
+      <ellipse cx="100.0" cy="16.5" rx="4.2" ry="1.9" transform="rotate(270.0 100.0 16.5)" stroke-width="0.8"/>
+      <ellipse cx="103.8" cy="17.5" rx="4.2" ry="1.9" transform="rotate(300.0 103.8 17.5)" stroke-width="0.8"/>
+      <ellipse cx="106.5" cy="20.2" rx="4.2" ry="1.9" transform="rotate(330.0 106.5 20.2)" stroke-width="0.8"/>
+      <g transform="translate(24,110) rotate(15) scale(1)">
+      <path d="M0 16 L0 -22" stroke-width="0.85"/>
+      <ellipse cx="2.2" cy="0.0" rx="3.1" ry="1.5" transform="rotate(-30 2.2 0.0)" stroke-width="0.7"/><ellipse cx="-2.2" cy="-3.2" rx="3.1" ry="1.5" transform="rotate(30 -2.2 -3.2)" stroke-width="0.7"/><ellipse cx="2.2" cy="-6.4" rx="3.1" ry="1.5" transform="rotate(-30 2.2 -6.4)" stroke-width="0.7"/><ellipse cx="-2.2" cy="-9.6" rx="3.1" ry="1.5" transform="rotate(30 -2.2 -9.6)" stroke-width="0.7"/><ellipse cx="2.2" cy="-12.8" rx="3.1" ry="1.5" transform="rotate(-30 2.2 -12.8)" stroke-width="0.7"/><ellipse cx="-2.2" cy="-16.0" rx="3.1" ry="1.5" transform="rotate(30 -2.2 -16.0)" stroke-width="0.7"/><ellipse cx="2.2" cy="-19.2" rx="3.1" ry="1.5" transform="rotate(-30 2.2 -19.2)" stroke-width="0.7"/>
+    </g>
+      <path d="M368 52 C 382 34, 370 14, 342 18 C 308 24, 276 26, 250 32" stroke-width="1"/>
+      <path d="M368 52 C 384 78, 386 118, 382 156" stroke-width="0.9"/>
+      <g transform="translate(350,40) rotate(25) scale(1.15)">
+      <path d="M0 16 L0 -22" stroke-width="0.85"/>
+      <ellipse cx="2.2" cy="0.0" rx="3.1" ry="1.5" transform="rotate(-30 2.2 0.0)" stroke-width="0.7"/><ellipse cx="-2.2" cy="-3.2" rx="3.1" ry="1.5" transform="rotate(30 -2.2 -3.2)" stroke-width="0.7"/><ellipse cx="2.2" cy="-6.4" rx="3.1" ry="1.5" transform="rotate(-30 2.2 -6.4)" stroke-width="0.7"/><ellipse cx="-2.2" cy="-9.6" rx="3.1" ry="1.5" transform="rotate(30 -2.2 -9.6)" stroke-width="0.7"/><ellipse cx="2.2" cy="-12.8" rx="3.1" ry="1.5" transform="rotate(-30 2.2 -12.8)" stroke-width="0.7"/><ellipse cx="-2.2" cy="-16.0" rx="3.1" ry="1.5" transform="rotate(30 -2.2 -16.0)" stroke-width="0.7"/><ellipse cx="2.2" cy="-19.2" rx="3.1" ry="1.5" transform="rotate(-30 2.2 -19.2)" stroke-width="0.7"/>
+    </g>
+      <circle cx="300.0" cy="24.0" r="3.6" stroke-width="0.9" fill="currentColor" fill-opacity=".35"/>
+      <ellipse cx="307.5" cy="24.0" rx="4.2" ry="1.9" transform="rotate(0.0 307.5 24.0)" stroke-width="0.8"/>
+      <ellipse cx="306.5" cy="27.8" rx="4.2" ry="1.9" transform="rotate(30.0 306.5 27.8)" stroke-width="0.8"/>
+      <ellipse cx="303.8" cy="30.5" rx="4.2" ry="1.9" transform="rotate(60.0 303.8 30.5)" stroke-width="0.8"/>
+      <ellipse cx="300.0" cy="31.5" rx="4.2" ry="1.9" transform="rotate(90.0 300.0 31.5)" stroke-width="0.8"/>
+      <ellipse cx="296.2" cy="30.5" rx="4.2" ry="1.9" transform="rotate(120.0 296.2 30.5)" stroke-width="0.8"/>
+      <ellipse cx="293.5" cy="27.8" rx="4.2" ry="1.9" transform="rotate(150.0 293.5 27.8)" stroke-width="0.8"/>
+      <ellipse cx="292.5" cy="24.0" rx="4.2" ry="1.9" transform="rotate(180.0 292.5 24.0)" stroke-width="0.8"/>
+      <ellipse cx="293.5" cy="20.3" rx="4.2" ry="1.9" transform="rotate(210.0 293.5 20.3)" stroke-width="0.8"/>
+      <ellipse cx="296.2" cy="17.5" rx="4.2" ry="1.9" transform="rotate(240.0 296.2 17.5)" stroke-width="0.8"/>
+      <ellipse cx="300.0" cy="16.5" rx="4.2" ry="1.9" transform="rotate(270.0 300.0 16.5)" stroke-width="0.8"/>
+      <ellipse cx="303.8" cy="17.5" rx="4.2" ry="1.9" transform="rotate(300.0 303.8 17.5)" stroke-width="0.8"/>
+      <ellipse cx="306.5" cy="20.2" rx="4.2" ry="1.9" transform="rotate(330.0 306.5 20.2)" stroke-width="0.8"/>
+      <g transform="translate(376,110) rotate(-15) scale(1)">
+      <path d="M0 16 L0 -22" stroke-width="0.85"/>
+      <ellipse cx="2.2" cy="0.0" rx="3.1" ry="1.5" transform="rotate(-30 2.2 0.0)" stroke-width="0.7"/><ellipse cx="-2.2" cy="-3.2" rx="3.1" ry="1.5" transform="rotate(30 -2.2 -3.2)" stroke-width="0.7"/><ellipse cx="2.2" cy="-6.4" rx="3.1" ry="1.5" transform="rotate(-30 2.2 -6.4)" stroke-width="0.7"/><ellipse cx="-2.2" cy="-9.6" rx="3.1" ry="1.5" transform="rotate(30 -2.2 -9.6)" stroke-width="0.7"/><ellipse cx="2.2" cy="-12.8" rx="3.1" ry="1.5" transform="rotate(-30 2.2 -12.8)" stroke-width="0.7"/><ellipse cx="-2.2" cy="-16.0" rx="3.1" ry="1.5" transform="rotate(30 -2.2 -16.0)" stroke-width="0.7"/><ellipse cx="2.2" cy="-19.2" rx="3.1" ry="1.5" transform="rotate(-30 2.2 -19.2)" stroke-width="0.7"/>
+    </g>
+      <path d="M32 304 C 16 322, 24 352, 62 354 C 100 356, 132 346, 152 344" stroke-width="1"/>
+      <g transform="translate(52,348) rotate(200) scale(1.1)">
+      <path d="M0 16 L0 -22" stroke-width="0.85"/>
+      <ellipse cx="2.2" cy="0.0" rx="3.1" ry="1.5" transform="rotate(-30 2.2 0.0)" stroke-width="0.7"/><ellipse cx="-2.2" cy="-3.2" rx="3.1" ry="1.5" transform="rotate(30 -2.2 -3.2)" stroke-width="0.7"/><ellipse cx="2.2" cy="-6.4" rx="3.1" ry="1.5" transform="rotate(-30 2.2 -6.4)" stroke-width="0.7"/><ellipse cx="-2.2" cy="-9.6" rx="3.1" ry="1.5" transform="rotate(30 -2.2 -9.6)" stroke-width="0.7"/><ellipse cx="2.2" cy="-12.8" rx="3.1" ry="1.5" transform="rotate(-30 2.2 -12.8)" stroke-width="0.7"/><ellipse cx="-2.2" cy="-16.0" rx="3.1" ry="1.5" transform="rotate(30 -2.2 -16.0)" stroke-width="0.7"/><ellipse cx="2.2" cy="-19.2" rx="3.1" ry="1.5" transform="rotate(-30 2.2 -19.2)" stroke-width="0.7"/>
+    </g>
+      <circle cx="100.0" cy="346.0" r="3.3" stroke-width="0.9" fill="currentColor" fill-opacity=".35"/>
+      <ellipse cx="107.0" cy="346.0" rx="4.0" ry="1.8" transform="rotate(0.0 107.0 346.0)" stroke-width="0.8"/>
+      <ellipse cx="105.9" cy="349.8" rx="4.0" ry="1.8" transform="rotate(32.7 105.9 349.8)" stroke-width="0.8"/>
+      <ellipse cx="102.9" cy="352.4" rx="4.0" ry="1.8" transform="rotate(65.5 102.9 352.4)" stroke-width="0.8"/>
+      <ellipse cx="99.0" cy="352.9" rx="4.0" ry="1.8" transform="rotate(98.2 99.0 352.9)" stroke-width="0.8"/>
+      <ellipse cx="95.4" cy="351.3" rx="4.0" ry="1.8" transform="rotate(130.9 95.4 351.3)" stroke-width="0.8"/>
+      <ellipse cx="93.3" cy="348.0" rx="4.0" ry="1.8" transform="rotate(163.6 93.3 348.0)" stroke-width="0.8"/>
+      <ellipse cx="93.3" cy="344.0" rx="4.0" ry="1.8" transform="rotate(196.4 93.3 344.0)" stroke-width="0.8"/>
+      <ellipse cx="95.4" cy="340.7" rx="4.0" ry="1.8" transform="rotate(229.1 95.4 340.7)" stroke-width="0.8"/>
+      <ellipse cx="99.0" cy="339.1" rx="4.0" ry="1.8" transform="rotate(261.8 99.0 339.1)" stroke-width="0.8"/>
+      <ellipse cx="102.9" cy="339.6" rx="4.0" ry="1.8" transform="rotate(294.5 102.9 339.6)" stroke-width="0.8"/>
+      <ellipse cx="105.9" cy="342.2" rx="4.0" ry="1.8" transform="rotate(327.3 105.9 342.2)" stroke-width="0.8"/>
+      <g transform="translate(24,250) rotate(160) scale(0.95)">
+      <path d="M0 16 L0 -22" stroke-width="0.85"/>
+      <ellipse cx="2.2" cy="0.0" rx="3.1" ry="1.5" transform="rotate(-30 2.2 0.0)" stroke-width="0.7"/><ellipse cx="-2.2" cy="-3.2" rx="3.1" ry="1.5" transform="rotate(30 -2.2 -3.2)" stroke-width="0.7"/><ellipse cx="2.2" cy="-6.4" rx="3.1" ry="1.5" transform="rotate(-30 2.2 -6.4)" stroke-width="0.7"/><ellipse cx="-2.2" cy="-9.6" rx="3.1" ry="1.5" transform="rotate(30 -2.2 -9.6)" stroke-width="0.7"/><ellipse cx="2.2" cy="-12.8" rx="3.1" ry="1.5" transform="rotate(-30 2.2 -12.8)" stroke-width="0.7"/><ellipse cx="-2.2" cy="-16.0" rx="3.1" ry="1.5" transform="rotate(30 -2.2 -16.0)" stroke-width="0.7"/><ellipse cx="2.2" cy="-19.2" rx="3.1" ry="1.5" transform="rotate(-30 2.2 -19.2)" stroke-width="0.7"/>
+    </g>
+      <path d="M368 304 C 384 322, 376 352, 338 354 C 300 356, 268 346, 248 344" stroke-width="1"/>
+      <g transform="translate(348,348) rotate(-200) scale(1.1)">
+      <path d="M0 16 L0 -22" stroke-width="0.85"/>
+      <ellipse cx="2.2" cy="0.0" rx="3.1" ry="1.5" transform="rotate(-30 2.2 0.0)" stroke-width="0.7"/><ellipse cx="-2.2" cy="-3.2" rx="3.1" ry="1.5" transform="rotate(30 -2.2 -3.2)" stroke-width="0.7"/><ellipse cx="2.2" cy="-6.4" rx="3.1" ry="1.5" transform="rotate(-30 2.2 -6.4)" stroke-width="0.7"/><ellipse cx="-2.2" cy="-9.6" rx="3.1" ry="1.5" transform="rotate(30 -2.2 -9.6)" stroke-width="0.7"/><ellipse cx="2.2" cy="-12.8" rx="3.1" ry="1.5" transform="rotate(-30 2.2 -12.8)" stroke-width="0.7"/><ellipse cx="-2.2" cy="-16.0" rx="3.1" ry="1.5" transform="rotate(30 -2.2 -16.0)" stroke-width="0.7"/><ellipse cx="2.2" cy="-19.2" rx="3.1" ry="1.5" transform="rotate(-30 2.2 -19.2)" stroke-width="0.7"/>
+    </g>
+      <circle cx="300.0" cy="346.0" r="3.3" stroke-width="0.9" fill="currentColor" fill-opacity=".35"/>
+      <ellipse cx="307.0" cy="346.0" rx="4.0" ry="1.8" transform="rotate(0.0 307.0 346.0)" stroke-width="0.8"/>
+      <ellipse cx="305.9" cy="349.8" rx="4.0" ry="1.8" transform="rotate(32.7 305.9 349.8)" stroke-width="0.8"/>
+      <ellipse cx="302.9" cy="352.4" rx="4.0" ry="1.8" transform="rotate(65.5 302.9 352.4)" stroke-width="0.8"/>
+      <ellipse cx="299.0" cy="352.9" rx="4.0" ry="1.8" transform="rotate(98.2 299.0 352.9)" stroke-width="0.8"/>
+      <ellipse cx="295.4" cy="351.3" rx="4.0" ry="1.8" transform="rotate(130.9 295.4 351.3)" stroke-width="0.8"/>
+      <ellipse cx="293.3" cy="348.0" rx="4.0" ry="1.8" transform="rotate(163.6 293.3 348.0)" stroke-width="0.8"/>
+      <ellipse cx="293.3" cy="344.0" rx="4.0" ry="1.8" transform="rotate(196.4 293.3 344.0)" stroke-width="0.8"/>
+      <ellipse cx="295.4" cy="340.7" rx="4.0" ry="1.8" transform="rotate(229.1 295.4 340.7)" stroke-width="0.8"/>
+      <ellipse cx="299.0" cy="339.1" rx="4.0" ry="1.8" transform="rotate(261.8 299.0 339.1)" stroke-width="0.8"/>
+      <ellipse cx="302.9" cy="339.6" rx="4.0" ry="1.8" transform="rotate(294.5 302.9 339.6)" stroke-width="0.8"/>
+      <ellipse cx="305.9" cy="342.2" rx="4.0" ry="1.8" transform="rotate(327.3 305.9 342.2)" stroke-width="0.8"/>
+      <g transform="translate(376,250) rotate(-160) scale(0.95)">
+      <path d="M0 16 L0 -22" stroke-width="0.85"/>
+      <ellipse cx="2.2" cy="0.0" rx="3.1" ry="1.5" transform="rotate(-30 2.2 0.0)" stroke-width="0.7"/><ellipse cx="-2.2" cy="-3.2" rx="3.1" ry="1.5" transform="rotate(30 -2.2 -3.2)" stroke-width="0.7"/><ellipse cx="2.2" cy="-6.4" rx="3.1" ry="1.5" transform="rotate(-30 2.2 -6.4)" stroke-width="0.7"/><ellipse cx="-2.2" cy="-9.6" rx="3.1" ry="1.5" transform="rotate(30 -2.2 -9.6)" stroke-width="0.7"/><ellipse cx="2.2" cy="-12.8" rx="3.1" ry="1.5" transform="rotate(-30 2.2 -12.8)" stroke-width="0.7"/><ellipse cx="-2.2" cy="-16.0" rx="3.1" ry="1.5" transform="rotate(30 -2.2 -16.0)" stroke-width="0.7"/><ellipse cx="2.2" cy="-19.2" rx="3.1" ry="1.5" transform="rotate(-30 2.2 -19.2)" stroke-width="0.7"/>
+    </g>
+</g>
     </symbol>
   </svg>
   <div class="page-depth" aria-hidden="true"></div>
@@ -376,14 +864,14 @@
       </div>
       <div class="sound-wrap">
         <button type="button" class="sound-toggle" id="soundToggle" aria-pressed="false" data-i18n-aria="soundOff" aria-label="Sound off">♩</button>
-        <input class="vol-slider" id="volSlider" type="range" min="0" max="1" step="0.01" value="0.28" aria-label="Volume">
+        <input class="vol-slider" id="volSlider" type="range" min="0" max="1" step="0.01" value="0.16" aria-label="Volume">
       </div>
       <nav class="nav" aria-label="Main navigation"><a href="#creatures" data-i18n="navExplore">Explore</a><a href="#cards" data-i18n="navCards">Cards</a><a href="#sources" data-i18n="navSources">Sources</a><button class="lang-toggle" id="languageToggle" type="button" aria-label="Switch language">UA</button></nav>
     </div>
   </header>
   <section class="hero" id="top">
     <div class="hero-content"><div class="eyebrow" data-i18n="eyebrow">Stories carried through generations</div><h1 data-i18n="heroTitle">A field guide to <em>Ukraine’s unseen world.</em></h1><p data-i18n="heroText">Step into forests, rivers, and old homesteads where folklore gave a face to the forces of nature and the mysteries of everyday life.</p><div class="hero-note"><span>✦</span><span data-i18n="heroNote">Bilingual folklore atlas · 22 figures · Major Arcana cards</span></div></div>
-    <div class="ornament" aria-hidden="true"><span>✿</span></div>
+    <div class="hero-visual"><img src="images/mavka.jpg" alt="Mavka, a forest spirit, standing among spring trees" width="800" height="600" decoding="async"></div>
   </section>
   <main id="creatures">
     <div class="intro-row"><div><div class="section-kicker" data-i18n="sectionKicker">The bestiary</div><h2 data-i18n="sectionTitle">Meet the folk figures</h2></div><div class="count" id="resultCount" aria-live="polite"></div></div>
@@ -467,14 +955,43 @@
     function displayReversed(r){return reversalsOn&&!!r.reversed;}
     function applyLanguage(){document.documentElement.lang=lang;document.querySelectorAll("[data-i18n]").forEach(el=>{const key=el.dataset.i18n;if(copy[lang][key])el.innerHTML=copy[lang][key]});document.querySelectorAll("[data-i18n-placeholder]").forEach(el=>el.placeholder=copy[lang][el.dataset.i18nPlaceholder]);$("#languageToggle").textContent=lang==="en"?"UA":"EN";$("#languageToggle").setAttribute("aria-label",lang==="en"?"Перемкнути українською":"Switch to English");renderFilters();render();renderTarot(false);syncTarotChrome();applyTheme();renderPresence&&renderPresence();}
     function renderFilters(){const realms=["all","forest","water","home","other"];$("#filters").innerHTML=realms.map(r=>`<button type="button" class="filter${r===activeRealm?" active":""}" data-realm="${r}" aria-pressed="${r===activeRealm}">${realmNames[lang][r]}</button>`).join("");$("#filters").querySelectorAll("[data-realm]").forEach(btn=>btn.addEventListener("click",()=>{activeRealm=btn.dataset.realm;renderFilters();render();}));}
-    function cardMarkup(c){const t=copy[lang];return `<article class="card"><button type="button" data-open="${c.id}"><div class="card-art"><img src="images/${c.id}.jpg" alt="${esc(c.alt[lang])}" width="800" height="600" loading="lazy" decoding="async"><span class="photo-credit">${t.photoCaption}</span></div><div class="card-body"><div class="card-meta"><span class="category">${realmNames[lang][c.realm]}</span><span class="latin">${esc(c.latin)}</span></div><h3>${esc(c.name)}</h3><p class="ukr-name">${esc(c.ukr)}</p><p class="card-desc">${esc(c.summary[lang])}</p><span class="read-more">${t.read} ↗</span></div></button></article>`;}
+    function cardMarkup(c){const t=copy[lang];return `<article class="card"><button type="button" data-open="${c.id}"><div class="card-art has-photo"><img src="images/${c.id}.jpg" alt="${esc(c.alt[lang])}" width="800" height="600" loading="lazy" decoding="async"><span class="photo-credit">${t.photoCaption}</span></div><div class="card-body"><div class="card-meta"><span class="category">${realmNames[lang][c.realm]}</span><span class="latin">${esc(c.latin)}</span></div><h3>${esc(c.name)}</h3><p class="ukr-name">${esc(c.ukr)}</p><p class="card-desc">${esc(c.summary[lang])}</p><span class="read-more">${t.read} ↗</span></div></button></article>`;}
     function atlasList(){return DATA.atlasOrder.map(id=>byId[id]);}
     function render(){const term=search.value.trim().toLocaleLowerCase();const filtered=atlasList().filter(c=>(activeRealm==="all"||c.realm===activeRealm)&&matchesQuery(c,term));$("#resultCount").textContent=resultLabel(filtered.length);grid.innerHTML=filtered.length?filtered.map(cardMarkup).join(""):`<div class="empty" style="display:block"><strong>${copy[lang].noResults}</strong>${copy[lang].noResultsText}</div>`;grid.querySelectorAll("[data-open]").forEach(btn=>btn.addEventListener("click",()=>openDetail(btn.dataset.open)));}
-    function openDetail(id){const t=tarotOf(id);if(!t){const c=byId[id];if(c)id=c.id;}const card=tarotOf(id);if(!card)return;const c=byId[card.openAtlas||id];const tx=copy[lang];const links=(card.sources||[]).map(s=>`<a href="${esc(s.url)}" target="_blank" rel="noreferrer">${esc(s.title)} ↗</a>`).join("");const headTitle=card.kind==="major"&&c?esc(c.name):esc(card.figure[lang]);const sub=card.kind==="major"&&c?`${esc(c.ukr)} · <i>${esc(c.latin)}</i>`:esc(card.title[lang]);const realm=c?realmNames[lang][c.realm]:(card.suit&&card.suit!=="major"?(lang==="uk"?(DATA.suits.find(s=>s.id===card.suit)||{}).uk: (DATA.suits.find(s=>s.id===card.suit)||{}).en):"");const story=card.kind==="major"&&c?c.detail[lang]:card.story[lang];const atlasBtn=card.kind==="minor"&&card.openAtlas&&byId[card.openAtlas]?`<button type="button" class="linkish" id="openAtlasBtn">${tx.openAtlas} ↗</button>`:"";$("#dialogContent").innerHTML=`<div class="detail-media parallax-media"><button class="close" type="button" aria-label="${lang==="en"?"Close":"Закрити"}">×</button><div class="detail-art"><img class="detail-photo" src="${card.image}" alt="${esc(card.alt[lang])}" width="800" height="600" loading="eager" decoding="async"></div></div><div class="detail-head"><span class="category">${esc(realm||"")}</span><h2 id="detailTitle">${headTitle}</h2><p>${sub}</p><p class="detail-arcana">${esc(card.kind==="major"?card.roman+" · "+card.title[lang]:card.title[lang])}</p></div><div class="detail-content"><p class="photo-credit">${tx.photoCaption}</p><h3>${tx.pairing}</h3><p class="reason">${esc(card.reason[lang])}</p><p class="notice">${esc(tx.modernNote)}</p><dl class="meanings"><div><dt>${tx.upright}</dt><dd>${esc(meaningText(card,false))}</dd></div><div><dt>${tx.reversed}</dt><dd>${esc(meaningText(card,true))}</dd></div></dl><h3>${tx.story}</h3><p>${esc(story)}</p>${atlasBtn}<h3>${tx.sourceLabel}</h3><div class="detail-sources">${links}</div><p class="notice">${tx.notice}</p></div>`;$("#dialogContent .close").addEventListener("click",()=>dialog.close());const ab=$("#openAtlasBtn");if(ab)ab.addEventListener("click",()=>{dialog.close();openDetail(card.openAtlas);});dialog.showModal();$("#dialogContent .close").focus();bindParallax(dialog);}
 
-    function tarotCardHTML(reading,opts){const t=tarotOf(reading.id);if(!t)return "";const rev=displayReversed(reading),flipped=opts.flipped;const title=t.title[lang], fig=figureLabel(t);const roman=t.kind==="major"?t.roman:(lang==="uk"?t.title.uk:t.title.en);const label=roman+" · "+fig+(rev?" ("+copy[lang].reversed+")":"");const img=t.image;const alt=t.alt[lang]||fig;return `<div class="tarot-frame"><div class="tarot-card${rev?" is-reversed":""}${flipped?" is-flipped":""}" role="button" tabindex="0" data-card-id="${t.id}" data-openable="${opts.openOnSecondTap?"1":"0"}" aria-label="${esc(label)}"><span class="tarot-inner"><span class="tarot-face tarot-back" aria-hidden="true"><span class="tarot-depth-bg"></span><span>✳</span>${gothicSVG("back")}</span><span class="tarot-face tarot-front"><span class="tarot-depth-bg"></span><span class="tarot-front-art"><img src="${img}" alt="${esc(alt)}" width="800" height="600" loading="${opts.lazy?"lazy":"eager"}" decoding="async"><span class="tarot-vignette" aria-hidden="true"></span></span><span class="tarot-front-cap"><span class="tarot-roman">${esc(roman)}</span><span class="tarot-arcana">${esc(title)}</span><span class="tarot-figure">${esc(fig)}</span></span>${gothicSVG("front")}<span class="tarot-shine" aria-hidden="true"></span></span></span></div></div>`;}
+    let scrollLockY=0, scrollLocked=false, skipUnlock=false;
+    let scrollPeekY=0, scrollPeekAt=0;
+    function currentScrollY(){return window.scrollY||window.pageYOffset||document.documentElement.scrollTop||0;}
+    function rememberScroll(){scrollPeekY=currentScrollY();scrollPeekAt=Date.now();}
+    function lockPageScroll(){
+      if(scrollLocked)return;
+      const recent=scrollPeekAt&&(Date.now()-scrollPeekAt<2500);
+      scrollLockY=recent?scrollPeekY:currentScrollY();
+      scrollLocked=true;
+      const b=document.body;
+      b.style.position="fixed";
+      b.style.top="-"+scrollLockY+"px";
+      b.style.left="0";
+      b.style.right="0";
+      b.style.width="100%";
+    }
+    function unlockPageScroll(){
+      if(skipUnlock){skipUnlock=false;return;}
+      if(!scrollLocked)return;
+      const y=scrollLockY;
+      scrollLocked=false;
+      const b=document.body;
+      b.style.position="";b.style.top="";b.style.left="";b.style.right="";b.style.width="";
+      const html=document.documentElement, prev=html.style.scrollBehavior;
+      html.style.scrollBehavior="auto";
+      window.scrollTo(0,y);
+      html.style.scrollBehavior=prev||"";
+    }
+    function openDetail(id){const t=tarotOf(id);if(!t){const c=byId[id];if(c)id=c.id;}const card=tarotOf(id);if(!card)return;const c=byId[card.openAtlas||id];const tx=copy[lang];const links=(card.sources||[]).map(s=>`<a href="${esc(s.url)}" target="_blank" rel="noreferrer">${esc(s.title)} ↗</a>`).join("");const headTitle=card.kind==="major"&&c?esc(c.name):esc(card.figure[lang]);const sub=card.kind==="major"&&c?`${esc(c.ukr)} · <i>${esc(c.latin)}</i>`:esc(card.title[lang]);const realm=c?realmNames[lang][c.realm]:(card.suit&&card.suit!=="major"?(lang==="uk"?(DATA.suits.find(s=>s.id===card.suit)||{}).uk: (DATA.suits.find(s=>s.id===card.suit)||{}).en):"");const story=card.kind==="major"&&c?c.detail[lang]:card.story[lang];const atlasBtn=card.kind==="minor"&&card.openAtlas&&byId[card.openAtlas]?`<button type="button" class="linkish" id="openAtlasBtn">${tx.openAtlas} ↗</button>`:"";$("#dialogContent").innerHTML=`<div class="detail-media parallax-media"><button class="close" type="button" aria-label="${lang==="en"?"Close":"Закрити"}">×</button><div class="detail-art"><img class="detail-photo" src="${card.image}" alt="${esc(card.alt[lang])}" width="800" height="600" loading="eager" decoding="async"></div></div><div class="detail-head"><span class="category">${esc(realm||"")}</span><h2 id="detailTitle">${headTitle}</h2><p>${sub}</p><p class="detail-arcana">${esc(card.kind==="major"?card.roman+" · "+card.title[lang]:card.title[lang])}</p></div><div class="detail-content"><p class="photo-credit">${tx.photoCaption}</p><h3>${tx.pairing}</h3><p class="reason">${esc(card.reason[lang])}</p><p class="notice">${esc(tx.modernNote)}</p><dl class="meanings"><div><dt>${tx.upright}</dt><dd>${esc(meaningText(card,false))}</dd></div><div><dt>${tx.reversed}</dt><dd>${esc(meaningText(card,true))}</dd></div></dl><h3>${tx.story}</h3><p>${esc(story)}</p>${atlasBtn}<h3>${tx.sourceLabel}</h3><div class="detail-sources">${links}</div><p class="notice">${tx.notice}</p></div>`;const closeBtn=$("#dialogContent .close");if(closeBtn)closeBtn.addEventListener("click",()=>dialog.close());const ab=$("#openAtlasBtn");if(ab)ab.addEventListener("click",()=>{skipUnlock=true;dialog.close();openDetail(card.openAtlas);});if(!dialog.open)lockPageScroll();dialog.showModal();if(closeBtn)closeBtn.focus({preventScroll:true});bindParallax(dialog);}
 
-    function bindCardFlips(root){root.querySelectorAll(".tarot-card").forEach(btn=>{const act=()=>{if(btn.dataset.skipClick==="1"){btn.dataset.skipClick="0";return;}if(!btn.classList.contains("is-flipped")){btn.classList.add("is-flipped");playUI("whoosh");setTimeout(()=>playUI("reveal"),280);return;}if(btn.dataset.openable==="1")openDetail(btn.dataset.cardId);};btn.addEventListener("click",act);btn.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();act();}});});bindParallax(root);}
+    function tarotCardHTML(reading,opts){const t=tarotOf(reading.id);if(!t)return "";const rev=displayReversed(reading),flipped=opts.flipped;const title=t.title[lang], fig=figureLabel(t);const roman=t.kind==="major"?t.roman:(lang==="uk"?t.title.uk:t.title.en);const label=roman+" · "+fig+(rev?" ("+copy[lang].reversed+")":"");const img=t.image;const alt=t.alt[lang]||fig;const suit=t.suit||"major";const crest=t.kind==="major"?t.roman:(t.captionRoman||"");const crestClass=crest.length>4?" is-long":"";return `<div class="tarot-frame" data-suit="${suit}"><div class="tarot-card${rev?" is-reversed":""}${flipped?" is-flipped":""}" role="button" tabindex="0" data-card-id="${t.id}" data-openable="${opts.openOnSecondTap?"1":"0"}" aria-label="${esc(label)}"><span class="tarot-inner"><span class="tarot-face tarot-back" aria-hidden="true"><span class="tarot-depth-bg"></span><span>✳</span>${nouveauSVG("back",suit)}</span><span class="tarot-face tarot-front"><span class="tarot-depth-bg"></span><span class="tarot-front-art"><img src="${img}" alt="${esc(alt)}" width="800" height="600" loading="${opts.lazy?"lazy":"eager"}" decoding="async"><span class="tarot-vignette" aria-hidden="true"></span></span><span class="tarot-crest${crestClass}">${esc(crest)}</span><span class="tarot-front-cap"><span class="tarot-arcana">${esc(title)}</span><span class="tarot-figure">${esc(fig)}</span></span>${nouveauSVG("front",suit)}<span class="tarot-shine" aria-hidden="true"></span></span></span></div></div>`;}
+
+    function bindCardFlips(root){root.querySelectorAll(".tarot-card").forEach(btn=>{const snap=()=>{const y=scrollPeekY;const html=document.documentElement,prev=html.style.scrollBehavior;html.style.scrollBehavior="auto";window.scrollTo(0,y);html.style.scrollBehavior=prev||"";};btn.addEventListener("pointerdown",rememberScroll,{capture:true});const act=()=>{if(btn.dataset.skipClick==="1"){btn.dataset.skipClick="0";return;}if(!btn.classList.contains("is-flipped")){btn.classList.add("is-flipped");playUI("whoosh");setTimeout(()=>playUI("reveal"),280);requestAnimationFrame(snap);return;}if(btn.dataset.openable==="1")openDetail(btn.dataset.cardId);};btn.addEventListener("click",act);btn.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();rememberScroll();act();}});});bindParallax(root);}
 
     function meaningBlock(reading,heading){const t=tarotOf(reading.id);if(!t)return "";const rev=displayReversed(reading),mean=meaningText(t,rev),cap=t.kind==="major"?`${t.roman} · ${t.title[lang]}`:`${t.title[lang]}`;return `<article class="meaning-block"><h3>${esc(heading)}: ${esc(figureLabel(t))}${rev?`<span class="rev-tag">${copy[lang].reversed}</span>`:""}</h3><p class="meaning-meta">${esc(cap)} · ${rev?copy[lang].reversed:copy[lang].upright}</p><p>${esc(mean)}</p><p class="meaning-meta">${esc(copy[lang].modernNote)}</p><button type="button" class="linkish" data-open="${t.id}">${copy[lang].openCard} ↗</button></article>`;}
 
@@ -495,6 +1012,8 @@
     search.addEventListener("input",render);
     $("#surpriseButton").addEventListener("click",()=>{const visible=atlasList().filter(c=>(activeRealm==="all"||c.realm===activeRealm)&&matchesQuery(c,search.value.trim().toLocaleLowerCase()));const choice=visible[Math.floor(Math.random()*visible.length)];if(choice)openDetail(choice.id);else{search.value="";activeRealm="all";renderFilters();render();}});
     dialog.addEventListener("click",e=>{if(e.target===dialog)dialog.close();});
+    document.addEventListener("pointerdown",e=>{if(e.target.closest(".tarot-card, [data-open], .card"))rememberScroll();},true);
+    dialog.addEventListener("close",unlockPageScroll);
     $("#tarotModes").addEventListener("click",e=>{const btn=e.target.closest("[data-mode]");if(!btn)return;setMode(btn.dataset.mode,btn.dataset.mode!=="deck");});
     $("#reversalToggle").addEventListener("change",()=>{reversalsOn=$("#reversalToggle").checked;localStorage.setItem(REV_KEY,reversalsOn?"on":"off");renderTarot(false);});
     $("#drawAgain").addEventListener("click",()=>{newSpread();renderSpread(true);});
@@ -640,7 +1159,7 @@
     let voice=(()=>{const v=localStorage.getItem(VOICE_KEY);return v==="sarcastic"||v==="funny"?v:"serious";})();
     let deckMode=localStorage.getItem(DECK_KEY)==="full"?"full":"major";
     let soundOn=localStorage.getItem(SOUND_KEY)==="on";
-    let soundVol=Math.min(1,Math.max(0, parseFloat(localStorage.getItem(VOL_KEY)||"0.28")||0.28));
+    let soundVol=Math.min(1,Math.max(0, parseFloat(localStorage.getItem(VOL_KEY)||"0.16")||0.16));
     let suitFilter="all";
     const minors=DATA.minors||[], minorById=Object.fromEntries(minors.map(m=>[m.id,m]));
     const suits=DATA.suits||[];
@@ -669,7 +1188,13 @@
       return t[side][lang];
     }
 
-    function gothicSVG(kind){const id=kind==="back"?"gothic-frame-back":"gothic-frame";return `<svg class="gothic-frame" viewBox="0 0 200 230" aria-hidden="true"><use href="#${id}"></use></svg>`;}
+    function gothicSVG(kind,suit){return nouveauSVG(kind,suit);}
+    function nouveauSVG(kind,suit){
+      const s=suit&&suit!=="major"?suit:"major";
+      const base=kind==="back"?"nouveau-base-back":"nouveau-base";
+      const corners="nouveau-corners-"+s;
+      return `<svg class="nouveau-frame" viewBox="0 0 400 380" aria-hidden="true"><use href="#${base}"></use>${kind==="back"?"":`<use href="#${corners}"></use>`}</svg>`;
+    }
 
     function applyTheme(){
       document.documentElement.setAttribute("data-theme", theme);
@@ -740,7 +1265,7 @@
     async function startBeds(){
       const ctx=ensureAudio(); if(!ctx||!masterGain)return;
       stopBeds(false);
-      const names=["night-bed-a","night-bed-b"];
+      const names=["cricket-bed-a","cricket-bed-b"];
       for(const n of names){
         const el=await getMedia(n);
         if(!el)continue;
@@ -749,16 +1274,18 @@
         try{
           const src=ctx.createMediaElementSource(el);
           const g=ctx.createGain();
+          const lp=ctx.createBiquadFilter();
+          lp.type="lowpass";lp.frequency.value=n.endsWith("-a")?5500:5000;lp.Q.value=0.7;
           g.gain.value=0;
-          src.connect(g);g.connect(masterGain);
+          src.connect(lp);lp.connect(g);g.connect(masterGain);
           const p=el.play();
           if(p&&p.catch)p.catch(()=>{});
-          fadeGain(g, n.endsWith("-a")?0.55:0.4, 2.4);
+          fadeGain(g, n.endsWith("-a")?0.28:0.2, 2.8);
           bedNodes.push({el,g,src});
         }catch(e){
           el.volume=0;
           const p=el.play(); if(p&&p.catch)p.catch(()=>{});
-          el.volume=soundVol*(n.endsWith("-a")?0.4:0.3);
+          el.volume=soundVol*(n.endsWith("-a")?0.18:0.12);
           bedNodes.push({el,g:null,src:null});
         }
       }
@@ -778,12 +1305,12 @@
     function scheduleShots(){
       clearTimeout(oneShotTimer);
       if(!soundOn)return;
-      const wait=20000+Math.random()*70000;
+      const wait=30000+Math.random()*90000;
       oneShotTimer=setTimeout(async()=>{
         if(!soundOn)return;
-        const kinds=["dog-1","dog-2","dog-3","owl-1","owl-2"];
+        const kinds=["dog-1","dog-2","dog-3"];
         let pick=kinds[Math.floor(Math.random()*kinds.length)];
-        if(pick===lastShot.kind)pick=kinds[(kinds.indexOf(pick)+1+Math.floor(Math.random()*4))%kinds.length];
+        if(pick===lastShot.kind)pick=kinds[(kinds.indexOf(pick)+1)%kinds.length];
         lastShot={kind:pick,t:Date.now()};
         await playShot(pick);
         scheduleShots();
@@ -796,16 +1323,19 @@
       try{
         const src=ctx.createMediaElementSource(el);
         const g=ctx.createGain();
+        const lp=ctx.createBiquadFilter();
+        lp.type="lowpass";lp.frequency.value=1700+Math.random()*300;lp.Q.value=0.6;
         const pan=ctx.createStereoPanner?ctx.createStereoPanner():null;
-        const vol=(0.18+Math.random()*0.28)*0.9;
+        const vol=0.07+Math.random()*0.07;
         g.gain.value=vol;
-        if(pan){pan.pan.value=(Math.random()*1.6)-0.8;src.connect(g);g.connect(pan);pan.connect(masterGain);}
-        else{src.connect(g);g.connect(masterGain);}
-        el.playbackRate=0.92+Math.random()*0.18;
+        src.connect(lp);lp.connect(g);
+        if(pan){pan.pan.value=(Math.random()*1.4)-0.7;g.connect(pan);pan.connect(masterGain);}
+        else{g.connect(masterGain);}
+        el.playbackRate=0.88+Math.random()*0.16;
         const p=el.play(); if(p&&p.catch)p.catch(()=>{});
         el.addEventListener("ended",()=>{try{src.disconnect();g.disconnect();if(pan)pan.disconnect();}catch(e){};},{once:true});
       }catch(e){
-        el.volume=soundVol*0.25; el.playbackRate=0.92+Math.random()*0.18;
+        el.volume=soundVol*0.1; el.playbackRate=0.88+Math.random()*0.16;
         const p=el.play(); if(p&&p.catch)p.catch(()=>{});
       }
     }

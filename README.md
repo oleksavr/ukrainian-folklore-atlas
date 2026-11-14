@@ -18,18 +18,14 @@ The 22 Major Arcana and 56 Minor Arcana (Wands, Cups, Swords, and Pentacles) are
 
 ## Sound
 
-UI chimes, whooshes and sparkles are synthesized in the browser with the Web Audio API. The optional night soundscape is off until you turn sound on. It mixes a looping winter-forest bed (two overlapping layers of different lengths, crossfaded so the join is hard to hear) with dog barks and owl hoots that arrive at random times, volumes, and stereo positions so the loop does not feel mechanical. A volume slider sits next to the sound toggle. Audio starts only after you turn sound on (a user gesture, which also satisfies iOS Safari).
+UI chimes, whooshes and sparkles are synthesized in the browser with the Web Audio API. The optional night soundscape is off until you turn sound on. It mixes a quiet looping bed of night crickets (two overlapping layers of different lengths, crossfaded so the join is hard to hear) with distant dog barks that arrive at random times, volumes, and stereo positions. There is no wind. A volume slider sits next to the sound toggle. Audio starts only after you turn sound on (a user gesture, which also satisfies iOS Safari).
 
 ### Sound credits (CC0, public domain)
 
 Remixed for this site; attribution is not required by the licenses, but the sources are:
 
-- Joseph Sardin, *Strong wind and trees #2*, [BigSoundBank](https://bigsoundbank.com/strong-wind-and-trees-2-s1451.html), CC0
+- Joseph Sardin, *Campaign at Night #4*, [BigSoundBank](https://bigsoundbank.com/campaign-at-night-4-s1880.html), CC0
 - Joseph Sardin, *Barking dog #1*, [BigSoundBank](https://bigsoundbank.com/barking-dog-s0916.html), CC0
-- SFXMint, *Winter Forest Night Ambience 10*, [CC0 1.0](https://sfxmint.com/sounds/night-ambience-10)
-- SFXMint, *Snowy Meadow Ambience 10*, [CC0 1.0](https://sfxmint.com/sounds/meadow-ambience-10)
-- SFXMint, *Deep Resonant Owl Hooting 37*, [CC0 1.0](https://sfxmint.com/sounds/animal-owl-37)
-- SFXMint, *Owl Hoot 01*, [CC0 1.0](https://sfxmint.com/dl/animal-owl-01.mp3)
 
 Files live in `audio/` as Opus/WebM plus AAC/M4A for iOS Safari.
 
